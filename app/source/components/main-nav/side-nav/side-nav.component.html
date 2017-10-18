@@ -1,0 +1,49 @@
+<md-sidenav class="side-navigation" md-component-id="side-nav-left" md-is-locked-open="$mdMedia('gt-md')" ng-class="{'compact': sideNavVm.isCompact}">
+  <md-menu md-position-mode="target-right target">
+    <div class="nav-header" ng-click="sideNavVm.openUserMenu($mdMenu, $event)">
+      <img class="profile-icon" src="/images/cat.jpg" />
+      <div class="nav-toolbar md-body-2" layout="row" md-menu-origin>
+        <div class="user-details" flex>
+          <div class="name">Young Park</div>
+          <div class="title md-body-1">Senior UX/UI Designer</div>
+        </div>
+        <md-icon>arrow_drop_down</md-icon>
+      </div>
+    </div>
+    <md-menu-content width="4">
+      <md-menu-item>
+        <md-button aria-label="profile">
+          <md-icon>person</md-icon>
+          Profile
+        </md-button>
+      </md-menu-item>
+      <md-menu-item>
+        <md-button aria-label="settings">
+          <md-icon>settings</md-icon>
+          Settings
+        </md-button>
+      </md-menu-item>
+      <md-menu-item>
+        <md-button aria-label="sign out">
+          <md-icon>directions_walk</md-icon>
+          Sign out
+        </md-button>
+      </md-menu-item>
+    </md-menu-content>
+  </md-menu>
+
+  <div class="md-nav-links">
+    <md-button>
+      <md-icon>home</md-icon>
+      <span>Home</span>
+    </md-button>
+    <md-button>
+      <md-icon>people</md-icon>
+      <span>Contacts</span>
+    </md-button>
+    <md-button>
+      <md-icon>list</md-icon>
+      <span>Requirements</span>
+    </md-button>
+  </div>
+</md-sidenav>
