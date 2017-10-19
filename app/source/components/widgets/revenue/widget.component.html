@@ -1,11 +1,11 @@
-<md-card class="micro-widget">
+<md-card class="micro-widget" md-colors="{backgroundColor: 'primary-{{revenueWidgetVm.widgetTheme.primary}}'}" >
   <md-card-title>
     <md-card-title-text layout="column">
       <span class="md-body-1" layout="row">
         <span flex>Revenue</span>
         <span class="trending-indicator md-caption">
           <span>{{revenueWidgetVm.trendPercent}}%</span>
-          <md-icon>
+          <md-icon aria-label="trending {{revenueWidgetVm.trendPercent > 0 ? 'up': 'down'}}">
             <span ng-if="revenueWidgetVm.trendPercent > 0">trending_up</span>
             <span ng-if="revenueWidgetVm.trendPercent < 0">trending_down</span>
           </md-icon>

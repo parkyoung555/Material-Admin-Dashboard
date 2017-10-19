@@ -4,18 +4,15 @@
   angular.module('revenueWidgetComponent')
     .controller('revenueWidgetComponent', revenueWidgetComponent);
 
-  function revenueWidgetComponent() {
-    var vm = this;
-    var months = ['January', 'February', 'March', 'April', 'May', 'June',
+  function revenueWidgetComponent($scope, themeService) {
+    var vm = this,
+      months = ['January', 'February', 'March', 'April', 'May', 'June',
       'July', 'August', 'September', 'October', 'November', 'December'];
 
-    Highcharts.setOptions({
-      lang: {
-        decimalPoint: '.',
-        thousandsSep: ','
-      }
-    });
-
+    vm.widgetTheme = {
+      primary: 700,
+      accent: 'A400'
+    };
     vm.revenue = 3672833773;
     vm.trendPercent = 80;
     vm.chartConfig = {
@@ -36,14 +33,16 @@
           lineWidth: 0,
           lineColor: '#448AFF',
           fillColor: 'rgba(41,98,255,.3)',
-          fillOpacity: .5,
+          fillOpacity: 1,
           states: {
             hover: {
               lineWidth: 2,
               halo: {
                 attributes: {
                   fill: 'rgba(41,98,255,.5)'
-                }
+                },
+                opacity: 1,
+                size: 12
               }
             }
           },
@@ -95,6 +94,12 @@
       }
     };
 
+    $scope.$watch(function(){
+      return themeService.currentTheme;
+    }, function(theme){
+      vm.currentTheme = theme;
+      setChartColors(theme);
+    });
     ////////////////////////////
 
     function generateData() {
@@ -108,6 +113,16 @@
     function randomIntFromInterval(min,max) {
       return Math.floor(Math.random()*(max-min+1)+min);
     }
+
+    function setChartColors(theme) {
+      var contrastColor = themeService.getColor(theme, 'primary', vm.widgetTheme.primary, 'contrast'),
+        accentColor = themeService.getColor(theme, 'accent', vm.widgetTheme.accent, 'value');
+
+      vm.chartConfig.plotOptions.area.fillColor = themeService.getRGBString(contrastColor, .24);
+      vm.chartConfig.plotOptions.area.lineColor = themeService.getRGBString(accentColor);
+      vm.chartConfig.plotOptions.area.marker.fillColor = themeService.getRGBString(accentColor);
+      vm.chartConfig.plotOptions.area.states.hover.halo.attributes.fill = themeService.getRGBString(contrastColor, .12);
+    }
   }
-  revenueWidgetComponent.$inject = [];
+  revenueWidgetComponent.$inject = ['$scope', 'themeService'];
 })();

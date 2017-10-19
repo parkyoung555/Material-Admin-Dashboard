@@ -9,7 +9,7 @@
       .state('root.home', {
         url: '/',
         views: {
-          'content@': {
+          'content@root': {
             templateUrl: 'source/components/home/home.component.html',
             controller: 'homeComponent',
             controllerAs: 'homeVm'

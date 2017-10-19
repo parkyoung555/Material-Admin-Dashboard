@@ -18,6 +18,25 @@
   }
 }
 
+.md-open-menu-container {
+  transform: scale(1, 1) !important;
+}
+
+md-switch {
+  
+  .md-label > *{
+    line-height: inherit;
+  }
+}
+
+@media (min-width: $screen_md) {
+  
+  .md-padding {
+    padding: $layout_unit;
+  }
+}
+
+
 @media(min-width: $screen_lg) {
   
   .page-wrapper {

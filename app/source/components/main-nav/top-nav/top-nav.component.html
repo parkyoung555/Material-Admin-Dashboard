@@ -5,13 +5,26 @@
       <md-tooltip>Menu</md-tooltip>
     </md-button>
     <h2 flex md-truncate>Dashboard</h2>
+    <md-switch ng-model="topNavVm.enableDarkMode" md-invert ng-change="topNavVm.toggleDarkMode()">
+      <span class="md-body-2">{{topNavVm.enableDarkMode ? 'Light' : 'Dark'}} mode</span>
+    </md-switch>
     <md-button class="md-icon-button" aria-label="Notifications">
       <md-icon>notifications</md-icon>
       <md-tooltip>Notifications</md-tooltip>
     </md-button>
-    <md-button class="md-icon-button" aria-label="Settings">
-      <md-icon>settings</md-icon>
-      <md-tooltip>Settings</md-tooltip>
-    </md-button>
+    <md-menu>
+      <md-button class="md-icon-button" ng-click="topNavVm.openSettingsMenu($mdMenu, $event)" aria-label="Settings">
+        <md-icon>settings</md-icon>
+        <md-tooltip>Settings</md-tooltip>
+      </md-button>
+      <md-menu-content width="4">
+        <md-menu-item ng-repeat="theme in topNavVm.themes track by $index">
+          <md-button aria-label="{{theme}} theme" ng-click="topNavVm.changeTheme(theme)">
+            <md-icon>palette</md-icon>
+            {{theme}}
+          </md-button>
+        </md-menu-item>
+      </md-menu-content>
+    </md-menu>
   </div>
 </md-toolbar>

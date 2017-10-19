@@ -4,10 +4,17 @@
   angular.module('mainNavComponent')
     .controller('topNavComponent', topNavComponent);
 
-  function topNavComponent($rootScope, $scope, $mdMedia, $mdSidenav) {
+  function topNavComponent($rootScope, $scope, $mdMedia, $mdSidenav, themeService) {
     var vm = this;
+
     vm.isCompact = !$mdMedia('gt-md');
+    vm.themes = themeService.availableThemes;
+    vm.enableDarkMode = themeService.darkMode;
+
     vm.toggleCompactMenu = toggleCompactMenu;
+    vm.openSettingsMenu = openSettingsMenu;
+    vm.changeTheme = changeTheme;
+    vm.toggleDarkMode = toggleDarkMode;
 
     $scope.$watch(function(){
       window.dispatchEvent(new Event('resize'));
@@ -28,6 +35,18 @@
 
       $mdSidenav('side-nav-left').toggle();
     }
+
+    function openSettingsMenu($mdMenu, ev) {
+      $mdMenu.open(ev);
+    }
+
+    function changeTheme(theme) {
+      themeService.currentTheme = theme;
+    }
+
+    function toggleDarkMode() {
+      themeService.toggleDarkMode(vm.enableDarkMode);
+    }
   }
-  topNavComponent.$inject = ['$rootScope', '$scope', '$mdMedia', '$mdSidenav'];
+  topNavComponent.$inject = ['$rootScope', '$scope', '$mdMedia', '$mdSidenav', 'themeService'];
 })();

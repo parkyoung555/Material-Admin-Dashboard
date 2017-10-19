@@ -1,7 +1,6 @@
 
 md-toolbar.compact {
   min-height: $toolbar-compact__height;
-  z-index: 100;
   
   .md-toolbar-tools {
     height: $toolbar-compact__height;
@@ -15,14 +14,15 @@ md-sidenav.side-navigation {
   
   .nav-header {
     background-color: rgba(0,0,0,.12);
+    display: inline-block;
     cursor: pointer;
     outline: none;
+    width: 100%;
     
     .profile-icon {
       border-radius: 50%;
       height: 64px;
-      margin: 0 0;
-      padding: $layout-unit_md $layout-unit_md 0;
+      margin: $layout-unit_md $layout-unit_md 0;
       width: 64px;
     }
     
@@ -84,8 +84,8 @@ md-sidenav.side-navigation {
       .nav-header .profile-icon {
         display: block;
         height: 40px;
-        margin: auto;
-        padding: $layout_unit 0;
+        margin: $layout_unit auto;
+        padding: 0 0;
         width: 40px;
       }
     }

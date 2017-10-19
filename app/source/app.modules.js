@@ -22,6 +22,7 @@
       'ui.router',
       'ngMaterial',
       'highcharts-ng',
+      'coreComponent',
       'widgetsComponent',
       'mainNavComponent',
       'homeComponent'
