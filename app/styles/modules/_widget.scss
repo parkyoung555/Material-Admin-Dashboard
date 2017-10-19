@@ -1,0 +1,18 @@
+
+.micro-widget {
+  min-height: 128px;
+  position: relative;
+
+  highchart {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+  }
+}
+.trending-indicator {
+  md-icon {
+    font-size: 16px;
+    line-height: inherit;
+  }
+}

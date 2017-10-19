@@ -10,6 +10,7 @@
     vm.toggleCompactMenu = toggleCompactMenu;
 
     $scope.$watch(function(){
+      window.dispatchEvent(new Event('resize'));
       return $mdMedia('gt-md');
     }, function(md){
       vm.isCompact = !md;
@@ -19,6 +20,7 @@
     ////////////////////////////////
 
     function toggleCompactMenu() {
+      window.dispatchEvent(new Event('resize'));
       if($mdMedia('gt-md')) {
         vm.isCompact = !vm.isCompact;
         $rootScope.$broadcast('isCompact', vm.isCompact);
