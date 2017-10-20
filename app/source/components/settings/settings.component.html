@@ -1,0 +1,32 @@
+<div class="setting-container md-padding">
+  <section>
+    <md-subheader>Appearance</md-subheader>
+    <md-card>
+      <md-card-content>
+        <h3 class="md-body-1">Theme</h3>
+        <md-list>
+          <md-list-item>
+            <div layout="column" flex>
+              <div layout="row" layout-align="start center" flex>
+                <span class="md-body-1" flex>Color</span>
+                <md-button class="md-icon-button color-picker-button"
+                           aria-label="{{theme.label}} theme"
+                           ng-repeat="theme in settingsVm.themes track by $index"
+                           ng-style="{'background-color': theme.color, 'color': theme.contrastColor}"
+                           ng-click="settingsVm.changeTheme(theme.value)">
+                  <md-icon ng-if="settingsVm.currentTheme == theme.value">check</md-icon>
+                  <md-tooltip>{{theme.label}}</md-tooltip>
+                </md-button>
+              </div>
+            </div>
+            <md-divider></md-divider>
+          </md-list-item>
+          <md-list-item md-no-ink>
+            <p class="md-body-1">Dark Mode</p>
+            <md-switch class="md-secondary" ng-model="settingsVm.enableDarkMode" ng-change="settingsVm.toggleDarkMode()"></md-switch>
+          </md-list-item>
+        </md-list>
+      </md-card-content>
+    </md-card>
+  </section>
+</div>

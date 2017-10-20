@@ -10,6 +10,7 @@
     vm.openUserMenu = openUserMenu;
     vm.isCompact = !$mdMedia('gt-md');
     vm.menuItems = navigationService.menuItems;
+    vm.mdColorsAttrValue = themeService.mdColorsAttrValue;
 
     $rootScope.$on('isCompact', function(event, data){
         vm.isCompact = data;

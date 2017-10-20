@@ -1,7 +1,10 @@
 <md-list>
   <md-list-item ng-repeat="contact in contactsVm.contacts track by $index">
     <img alt="{{ contact.name.first + ' ' + contact.name.last }}" ng-src="{{ contact.picture.thumbnail }}" class="md-avatar" />
-    <p class="capitalize">{{ contact.name.first + ' ' + contact.name.last }} <span md-colors="{color: 'primary-hue-2'}" class="md-body-1">{{ contact.email }}</span></p>
+    <p class="capitalize">
+      {{ contact.name.first + ' ' + contact.name.last }}
+      <span md-colors="{color: 'primary-hue-2'}" class="md-body-1">{{ contact.email }}</span>
+    </p>
     <md-checkbox class="md-secondary" ng-model="contact.selected"></md-checkbox>
   </md-list-item>
 </md-list>

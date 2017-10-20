@@ -32,8 +32,10 @@
     </md-menu-content>
   </md-menu>
   <div class="md-nav-links">
-    <md-button ui-sref="{{menuItem.state}}" ng-repeat="menuItem in sideNavVm.menuItems track by $index" ng-class="{'md-accent': $state.current.name == menuItem.state}">
-      <md-icon aria-label="{{menuItem.label}}">{{menuItem.icon}}</md-icon>
+    <md-button ui-sref="{{menuItem.state}}" ng-repeat="menuItem in sideNavVm.menuItems track by $index"
+               md-colors="{{sideNavVm.mdColorsAttrValue($state.current.name == menuItem.state, 'color', ( menuItem.activeColor || ( sideNavVm.currentTheme + '-accent' ) ))}}">
+      <md-icon aria-label="{{menuItem.label}}"
+               md-colors="{{sideNavVm.mdColorsAttrValue($state.current.name == menuItem.state, 'color', ( menuItem.activeColor || ( sideNavVm.currentTheme + '-accent' ) ))}}">{{menuItem.icon}}</md-icon>
       <span>{{menuItem.label}}</span>
       <md-tooltip ng-if="sideNavVm.isCompact" md-direction="right">{{menuItem.label}}</md-tooltip>
     </md-button>

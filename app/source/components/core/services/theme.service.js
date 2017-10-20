@@ -15,7 +15,9 @@
     this.getThemeColor = getThemeColor;
     this.getColor = getColor;
     this.getRGBString = getRGBString;
+    this.setCurrentTheme = setCurrentTheme;
     this.toggleDarkMode = toggleDarkMode;
+    this.mdColorsAttrValue = mdColorsAttrValue;
 
     ////////////////////////////////////
 
@@ -26,7 +28,8 @@
           availableThemes.push({
             label: utilityService.unCamelCase(key),
             value: key,
-            color: getRGBString(getColor(key, 'primary', '500', 'value'))
+            color: getRGBString(getColor(key, 'primary', '500', 'value')),
+            contrastColor: getRGBString(getColor(key, 'primary', '500', 'contrast'))
           });
         }
       });
@@ -58,8 +61,18 @@
       return 'rgba(' + colorArray[0] + ', ' + colorArray[1] + ', ' + colorArray[2] + ', ' + a + ')';
     }
 
+    function setCurrentTheme(themeName) {
+      this.currentTheme = themeName;
+      return themeName;
+    }
+
     function toggleDarkMode(darkMode) {
+      this.darkMode = darkMode;
       this.themeSuffix = darkMode ? 'Dark' : '';
+    }
+
+    function mdColorsAttrValue(isEnabled, cssProperty, paletteName) {
+      return isEnabled ? '{' + cssProperty + ': \'' + paletteName + '\'}' : '{}';
     }
   }
   themeService.$inject = ['$mdColors', '$mdColorUtil', '$mdColorPalette', '$mdTheming', 'utilityService'];

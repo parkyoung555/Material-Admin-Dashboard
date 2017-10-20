@@ -1,30 +1,25 @@
-<md-toolbar class="md-whiteframe-2dp compact md-primary" md-colors="{backgroundColor: '{{ $state.current.data.pageColor || topNavVm.currentTheme + '-primary' }}'}">
+<md-toolbar class="md-whiteframe-2dp compact md-primary"
+            md-colors="{ backgroundColor: '{{$state.current.data.pageColor ? topNavVm.currentTheme + '-' + $state.current.data.pageColor : topNavVm.currentTheme + '-primary'}}' }">
   <div class="md-toolbar-tools">
     <md-button class="md-icon-button" aria-label="menu" ng-click="topNavVm.toggleCompactMenu()">
       <md-icon>menu</md-icon>
       <md-tooltip>Menu</md-tooltip>
     </md-button>
     <h2 flex md-truncate>{{$state.current.data.pageTitle}}</h2>
-    <md-switch ng-model="topNavVm.enableDarkMode" md-invert ng-change="topNavVm.toggleDarkMode()">
-      <span class="md-body-2">{{topNavVm.enableDarkMode ? 'Light' : 'Dark'}} mode</span>
-    </md-switch>
-    <md-button class="md-icon-button" aria-label="Notifications">
-      <md-icon>notifications</md-icon>
-      <md-tooltip>Notifications</md-tooltip>
-    </md-button>
     <md-menu>
-      <md-button class="md-icon-button" ng-click="topNavVm.openSettingsMenu($mdMenu, $event)" aria-label="Settings">
-        <md-icon>settings</md-icon>
-        <md-tooltip>Settings</md-tooltip>
+      <md-button class="md-icon-button" aria-label="Notifications" ng-click="topNavVm.openNotificationsMenu($mdMenu, $event)">
+        <md-icon>notifications</md-icon>
+        <md-tooltip>Notifications</md-tooltip>
       </md-button>
       <md-menu-content width="4">
-        <md-menu-item ng-repeat="theme in topNavVm.themes track by $index">
-          <md-button aria-label="{{theme.label}} theme" ng-click="topNavVm.changeTheme(theme.value)">
-            <md-icon ng-style="{'color': theme.color}">pets</md-icon>
-            {{theme.label}}
-          </md-button>
-        </md-menu-item>
+        <div layout-padding>
+          <div>No one likes you.</div>
+        </div>
       </md-menu-content>
     </md-menu>
+    <md-button class="md-icon-button" ui-sref="root.settings" aria-label="Settings">
+      <md-icon>settings</md-icon>
+      <md-tooltip>Settings</md-tooltip>
+    </md-button>
   </div>
 </md-toolbar>
