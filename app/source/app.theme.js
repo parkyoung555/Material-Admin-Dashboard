@@ -21,7 +21,15 @@
           accentPalette: {
             color: 'blue',
             options: {
-              'default': 'A400'
+              'default': '500'
+            }
+          }
+        },
+        dark: {
+          accentPalette: {
+            color: 'blue',
+            options: {
+              'default': '400'
             }
           }
         }
@@ -106,14 +114,14 @@
           .primaryPalette(
             themes[i].dark.primaryPalette.color,
             themes[i].dark.primaryPalette.options
-          )
+          );
       }
       else {
         $mdThemingProvider.theme(themes[i].name + 'Dark')
           .primaryPalette(
             themes[i].default.primaryPalette.color,
             themes[i].default.primaryPalette.options
-          )
+          );
       }
 
       if(themes[i].dark && themes[i].dark.accentPalette) {
@@ -121,20 +129,20 @@
           .accentPalette(
             themes[i].dark.accentPalette.color,
             themes[i].dark.accentPalette.options
-          )
-          .dark();
+          );
       }
       else {
         $mdThemingProvider.theme(themes[i].name + 'Dark')
           .accentPalette(
             themes[i].default.accentPalette.color,
             themes[i].default.accentPalette.options
-          )
-          .dark();
+          );
       }
+
+      $mdThemingProvider.theme(themes[i].name + 'Dark').dark();
     }
 
-    $mdThemingProvider.alwaysWatchTheme(true);
+    // $mdThemingProvider.alwaysWatchTheme(true);
     // $mdThemingProvider.generateThemesOnDemand(true);
     // $mdThemingProvider.setDefaultTheme('kindOfGrey');
   }

@@ -22,10 +22,10 @@
       $rootScope.$broadcast('isCompact', vm.isCompact);
     });
 
-    $scope.$watch(function(){
-      return themeService.currentTheme;
+    $scope.$watchCollection(function(){
+      return [themeService.currentTheme, themeService.themeSuffix];
     }, function(theme){
-      vm.currentTheme = themeService.setCurrentTheme(theme);
+      vm.currentTheme = theme[0] + theme[1];
     });
 
     ////////////////////////////////

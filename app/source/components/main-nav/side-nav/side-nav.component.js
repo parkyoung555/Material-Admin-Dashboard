@@ -16,10 +16,10 @@
         vm.isCompact = data;
     });
 
-    $scope.$watch(function(){
-      return themeService.currentTheme;
+    $scope.$watchCollection(function(){
+      return [themeService.currentTheme, themeService.themeSuffix];
     }, function(theme){
-      vm.currentTheme = theme;
+      vm.currentTheme = theme[0] + theme[1];
     });
 
     ///////////////////////////
