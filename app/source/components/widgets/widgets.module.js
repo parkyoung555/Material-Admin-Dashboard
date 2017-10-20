@@ -2,6 +2,7 @@
   'use strict';
 
   angular.module('widgetsComponent', [
-    'revenueWidgetComponent'
+    'revenueWidgetComponent',
+    'salesPerformanceWidgetComponent'
   ]);
 })();
