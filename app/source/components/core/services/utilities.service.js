@@ -7,6 +7,8 @@
   function utilityService() {
 
     this.unCamelCase = unCamelCase;
+    this.getMonths = getMonths;
+    this.randomIntFromInterval = randomIntFromInterval;
 
     /////////////////////////
 
@@ -17,6 +19,17 @@
         .replace(/^./, function (str) {
           return str.toUpperCase();
         })
+    }
+
+    function getMonths(month) {
+      var months = ['January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December']
+
+      return month ? months[month] : months;
+    }
+
+    function randomIntFromInterval(min,max) {
+      return Math.floor(Math.random()*(max-min+1)+min);
     }
   }
 

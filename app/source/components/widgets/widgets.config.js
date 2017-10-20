@@ -9,6 +9,11 @@
       lang: {
         decimalPoint: '.',
         thousandsSep: ','
+      },
+      tooltip: {
+        backgroundColor: '#fff',
+        borderRadius: 2,
+        borderWidth: 0
       }
     });
   }

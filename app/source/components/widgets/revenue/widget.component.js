@@ -4,16 +4,15 @@
   angular.module('revenueWidgetComponent')
     .controller('revenueWidgetComponent', revenueWidgetComponent);
 
-  function revenueWidgetComponent($scope, themeService) {
+  function revenueWidgetComponent($scope, themeService, utilityService) {
     var vm = this,
-      months = ['January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December'];
+      months = utilityService.getMonths();
 
     vm.widgetTheme = {
       primary: 700,
       accent: 'A400'
     };
-    vm.revenue = randomIntFromInterval(1500000, 2500000);
+    vm.revenue = utilityService.randomIntFromInterval(1500000, 2500000);
     vm.trendPercent = 80;
     vm.chartConfig = {
       chart: {
@@ -68,10 +67,7 @@
       },
       tooltip: {
         headerFormat: '<div class="md-caption">{point.key}</div><br />',
-        pointFormat: '<div class="md-body-2">${point.y:,.2f}</div>',
-        backgroundColor: '#fff',
-        borderRadius: 2,
-        borderWidth: 0
+        pointFormat: '<div class="md-body-2">${point.y:,.2f}</div>'
       },
       xAxis: {
         visible: false,
@@ -105,13 +101,9 @@
     function generateData() {
       var data = [];
       for(var i = 0, len = new Date().getMonth() + 1; i < len; i++){
-        data.push([months[i], randomIntFromInterval(1500000, 2500000)]);
+        data.push([months[i], utilityService.randomIntFromInterval(1500000, 2500000)]);
       }
       return data;
-    }
-
-    function randomIntFromInterval(min,max) {
-      return Math.floor(Math.random()*(max-min+1)+min);
     }
 
     function setChartColors(theme) {
@@ -124,5 +116,5 @@
       vm.chartConfig.plotOptions.area.states.hover.halo.attributes.fill = themeService.getRGBString(contrastColor, .12);
     }
   }
-  revenueWidgetComponent.$inject = ['$scope', 'themeService'];
+  revenueWidgetComponent.$inject = ['$scope', 'themeService', 'utilityService'];
 })();
