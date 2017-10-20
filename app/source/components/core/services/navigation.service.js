@@ -14,7 +14,7 @@
         navItems = [];
 
       states = states.filter(function(state){
-        return !state.abstract && !!state.url;
+        return !state.abstract && !!state.url && (state.data ? !state.data.excludeFromNavigation : true);
       });
 
       states.sort(function(a, b) {
