@@ -6,12 +6,20 @@
   padding: 0.2em 0;
 }
 
+.capitalize {
+  text-transform: capitalize;
+}
+
+.dark-mode-active {
+  color: $light-primary__color;
+}
+
 .page-wrapper {
   height: 100%;
-  
+
   .main-content {
     position: relative;
-    
+
     > md-content {
       margin: 0 0 0 $side-menu__compact__width;
     }
@@ -23,14 +31,14 @@
 }
 
 md-switch {
-  
+
   .md-label > *{
     line-height: inherit;
   }
 }
 
 @media (min-width: $screen_md) {
-  
+
   .md-padding {
     padding: $layout_unit;
   }
@@ -38,11 +46,11 @@ md-switch {
 
 
 @media(min-width: $screen_lg) {
-  
+
   .page-wrapper {
 
     .main-content {
-      
+
       > md-content {
         margin: 0 0;
       }

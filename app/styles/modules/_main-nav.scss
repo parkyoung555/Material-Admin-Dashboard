@@ -1,45 +1,51 @@
 
 md-toolbar.compact {
   min-height: $toolbar-compact__height;
-  
+
   .md-toolbar-tools {
     height: $toolbar-compact__height;
     max-height: $toolbar-compact__height;
+  }
+
+  &.md-default-theme:not(.md-menu-toolbar) md-icon,
+  &:not(.md-menu-toolbar) md-icon {
+    color: $dark-secondary__color;
+    fill: $dark-secondary__color;
   }
 }
 
 md-sidenav.side-navigation {
   border-right: 1px solid $border-dark__color;
   height: 100%;
-  
+
   .nav-header {
     background-color: rgba(0,0,0,.12);
     display: inline-block;
     cursor: pointer;
     outline: none;
     width: 100%;
-    
+
     .profile-icon {
       border-radius: 50%;
       height: 64px;
       margin: $layout-unit_md $layout-unit_md 0;
       width: 64px;
     }
-    
+
     .nav-toolbar {
       cursor: pointer;
       outline: none;
       padding: $layout-unit_md;
     }
-    
+
     md-icon {
       margin: 0 0;
     }
   }
-  
+
   .md-nav-links {
-    
-    button {
+
+    .md-button {
       border-radius: 0;
       display: block;
       line-height: $side-menu__menu-item__height;
@@ -49,23 +55,23 @@ md-sidenav.side-navigation {
       text-align: left;
       text-transform: capitalize;
       width: 100%;
-      
+
       md-icon {
         margin: 0 $layout-unit_md 0 0;
       }
-      
+
       .md-ripple-container {
         border-radius: 0;
       }
     }
   }
-  
+
   &.compact {
-    
+
     &:not(.md-closed):not(.md-locked-open) {
       box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
     }
-    
+
     &.md-closed,
     &.md-locked-open {
       display: block;
@@ -75,12 +81,12 @@ md-sidenav.side-navigation {
       text-align: center;
       transform: none;
       width: $side-menu__compact__width;
-  
+
       .nav-toolbar,
       .md-nav-links span {
         display: none;
       }
-  
+
       .nav-header .profile-icon {
         display: block;
         height: 40px;
@@ -88,6 +94,17 @@ md-sidenav.side-navigation {
         padding: 0 0;
         width: 40px;
       }
+    }
+  }
+}
+
+.dark-mode-active {
+
+  md-sidenav.side-navigation {
+
+    .nav-header {
+      background-color: rgba(0, 0, 0, .12) !important;
+      color: $light-primary__color !important;
     }
   }
 }

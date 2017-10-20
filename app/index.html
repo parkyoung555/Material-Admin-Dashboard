@@ -10,6 +10,7 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
     <link rel="stylesheet" href="bower_components/roboto-fontface/css/roboto/roboto-fontface.css" />
+    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -22,7 +23,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div class="page-wrapper" ui-view layout="column" md-theme="{{rootVm.currentTheme}}" md-theme-watch></div>
+    <div class="page-wrapper" ui-view layout="column" ng-class="{'dark-mode-active': rootVm.darkMode}" md-theme="{{rootVm.currentTheme}}"></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -52,6 +53,7 @@
     <script src="bower_components/highcharts-ng/dist/highcharts-ng.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/fluid-grid/dist/fluid-grid.js"></script>
+    <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -62,10 +64,15 @@
         <script src="source/app.icons.js"></script>
         <script src="source/app.component.js"></script>
         <script src="source/app.routes.js"></script>
+        <script src="source/app.config.js"></script>
+        <script src="source/app.run.js"></script>
 
         <!-- Core -->
         <script src="source/components/core/core.module.js"></script>
         <script src="source/components/core/services/theme.service.js"></script>
+        <script src="source/components/core/services/utilities.service.js"></script>
+        <script src="source/components/core/services/navigation.service.js"></script>
+        <script src="source/components/core/services/contacts.service.js"></script>
 
         <!-- Components-->
         <!-- Main Nav -->
@@ -86,6 +93,11 @@
         <script src="source/components/home/home.module.js"></script>
         <script src="source/components/home/home.routes.js"></script>
         <script src="source/components/home/home.component.js"></script>
+
+        <!-- Contacts -->
+        <script src="source/components/contacts/contacts.module.js"></script>
+        <script src="source/components/contacts/contacts.routes.js"></script>
+        <script src="source/components/contacts/contacts.component.js"></script>
 
         <!-- endbuild -->
 </body>

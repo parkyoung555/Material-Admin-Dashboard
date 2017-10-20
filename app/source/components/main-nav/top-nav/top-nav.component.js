@@ -10,6 +10,7 @@
     vm.isCompact = !$mdMedia('gt-md');
     vm.themes = themeService.availableThemes;
     vm.enableDarkMode = themeService.darkMode;
+    vm.currentTheme = themeService.currentTheme;
 
     vm.toggleCompactMenu = toggleCompactMenu;
     vm.openSettingsMenu = openSettingsMenu;
@@ -41,6 +42,7 @@
     }
 
     function changeTheme(theme) {
+      vm.currentTheme = theme;
       themeService.currentTheme = theme;
     }
 

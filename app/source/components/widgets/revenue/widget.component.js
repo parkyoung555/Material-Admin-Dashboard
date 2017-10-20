@@ -13,7 +13,7 @@
       primary: 700,
       accent: 'A400'
     };
-    vm.revenue = 3672833773;
+    vm.revenue = randomIntFromInterval(1500000, 2500000);
     vm.trendPercent = 80;
     vm.chartConfig = {
       chart: {

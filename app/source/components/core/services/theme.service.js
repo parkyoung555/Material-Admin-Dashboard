@@ -4,9 +4,10 @@
   angular.module('coreComponent')
     .service('themeService', themeService);
 
-  function themeService($mdColors, $mdColorUtil, $mdColorPalette, $mdTheming) {
+  function themeService($mdColors, $mdColorUtil, $mdColorPalette, $mdTheming, utilityService) {
     this.currentTheme = 'default';
-    this.availableThemes = Object.keys($mdTheming.THEMES);
+    this.themeSuffix = '';
+    this.availableThemes = getAvailableThemes();
     this.darkMode = false;
 
     this.getTheme = getTheme;
@@ -17,6 +18,20 @@
     this.toggleDarkMode = toggleDarkMode;
 
     ////////////////////////////////////
+
+    function getAvailableThemes() {
+      var availableThemes = [];
+      angular.forEach($mdTheming.THEMES, function(theme, key){
+        if(!theme.isDark) {
+          availableThemes.push({
+            label: utilityService.unCamelCase(key),
+            value: key,
+            color: getRGBString(getColor(key, 'primary', '500', 'value'))
+          });
+        }
+      });
+      return availableThemes;
+    }
 
     function getTheme(themeName){
       return $mdTheming.THEMES[themeName];
@@ -44,10 +59,8 @@
     }
 
     function toggleDarkMode(darkMode) {
-      console.log($mdTheming.THEMES[this.currentTheme]);
-      $mdTheming.THEMES[this.currentTheme].dark();
-      getTheme(this.currentTheme).isDark = darkMode;
+      this.themeSuffix = darkMode ? 'Dark' : '';
     }
   }
-  themeService.$inject = ['$mdColors', '$mdColorUtil', '$mdColorPalette', '$mdTheming'];
+  themeService.$inject = ['$mdColors', '$mdColorUtil', '$mdColorPalette', '$mdTheming', 'utilityService'];
 })();

@@ -1,10 +1,10 @@
-<md-toolbar class="md-whiteframe-2dp compact">
+<md-toolbar class="md-whiteframe-2dp compact md-primary" md-colors="{backgroundColor: '{{ $state.current.data.pageColor || topNavVm.currentTheme + '-primary' }}'}">
   <div class="md-toolbar-tools">
     <md-button class="md-icon-button" aria-label="menu" ng-click="topNavVm.toggleCompactMenu()">
       <md-icon>menu</md-icon>
       <md-tooltip>Menu</md-tooltip>
     </md-button>
-    <h2 flex md-truncate>Dashboard</h2>
+    <h2 flex md-truncate>{{$state.current.data.pageTitle}}</h2>
     <md-switch ng-model="topNavVm.enableDarkMode" md-invert ng-change="topNavVm.toggleDarkMode()">
       <span class="md-body-2">{{topNavVm.enableDarkMode ? 'Light' : 'Dark'}} mode</span>
     </md-switch>
@@ -19,9 +19,9 @@
       </md-button>
       <md-menu-content width="4">
         <md-menu-item ng-repeat="theme in topNavVm.themes track by $index">
-          <md-button aria-label="{{theme}} theme" ng-click="topNavVm.changeTheme(theme)">
-            <md-icon>palette</md-icon>
-            {{theme}}
+          <md-button aria-label="{{theme.label}} theme" ng-click="topNavVm.changeTheme(theme.value)">
+            <md-icon ng-style="{'color': theme.color}">pets</md-icon>
+            {{theme.label}}
           </md-button>
         </md-menu-item>
       </md-menu-content>

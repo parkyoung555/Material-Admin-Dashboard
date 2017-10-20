@@ -7,12 +7,11 @@
   function rootComponent($rootScope, $scope, themeService) {
     var vm = this;
 
-    vm.currentTheme = themeService.currentTheme;
-
-    $scope.$watch(function(){
-      return themeService.currentTheme;
+    $scope.$watchCollection(function(){
+      return [themeService.currentTheme, themeService.themeSuffix];
     }, function(theme){
-      vm.currentTheme = theme;
+      vm.currentTheme = theme[0] + theme[1];
+      vm.darkMode = !!theme[1];
     });
   }
   rootComponent.$inject = ['$rootScope', '$scope', 'themeService'];

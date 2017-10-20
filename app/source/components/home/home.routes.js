@@ -14,6 +14,11 @@
             controller: 'homeComponent',
             controllerAs: 'homeVm'
           }
+        },
+        data: {
+          pageTitle: 'Dashboard',
+          menuIcon: 'dashboard',
+          priority: 1
         }
       })
   }

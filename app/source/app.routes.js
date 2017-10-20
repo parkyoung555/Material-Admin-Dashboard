@@ -13,7 +13,7 @@
     .module('dashboardApp')
     .config(routeConfig);
 
-  function routeConfig($routeProvider, $stateProvider) {
+  function routeConfig($urlRouterProvider, $stateProvider) {
     $stateProvider
       .state('root', {
         views: {
@@ -36,10 +36,7 @@
         }
       });
 
-    $routeProvider
-      .otherwise({
-        redirectTo: '/'
-      });
+    $urlRouterProvider.otherwise('/');
   }
-  routeConfig.$inject = ['$routeProvider', '$stateProvider'];
+  routeConfig.$inject = ['$urlRouterProvider', '$stateProvider'];
 })();

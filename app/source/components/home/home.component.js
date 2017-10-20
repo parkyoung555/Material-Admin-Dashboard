@@ -5,7 +5,7 @@
     .controller('homeComponent', homeComponent);
 
   function homeComponent() {
-    this.test = 'allo';
+
   }
   homeComponent.$inject = [];
 })();

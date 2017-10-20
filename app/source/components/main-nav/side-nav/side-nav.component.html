@@ -33,17 +33,10 @@
   </md-menu>
 
   <div class="md-nav-links">
-    <md-button>
-      <md-icon>home</md-icon>
-      <span>Home</span>
-    </md-button>
-    <md-button>
-      <md-icon>people</md-icon>
-      <span>Contacts</span>
-    </md-button>
-    <md-button>
-      <md-icon>list</md-icon>
-      <span>Requirements</span>
+    <md-button ui-sref="{{menuItem.state}}" ng-repeat="menuItem in sideNavVm.menuItems track by $index">
+      <md-icon>{{menuItem.icon}}</md-icon>
+      <span>{{menuItem.label}}</span>
+      <md-tooltip ng-if="sideNavVm.isCompact" md-direction="right">{{menuItem.label}}</md-tooltip>
     </md-button>
   </div>
 </md-sidenav>

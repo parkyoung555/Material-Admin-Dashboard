@@ -22,9 +22,11 @@
       'ui.router',
       'ngMaterial',
       'highcharts-ng',
+      'angular-loading-bar',
       'coreComponent',
       'widgetsComponent',
       'mainNavComponent',
-      'homeComponent'
+      'homeComponent',
+      'contactsComponent'
     ]);
 })();
