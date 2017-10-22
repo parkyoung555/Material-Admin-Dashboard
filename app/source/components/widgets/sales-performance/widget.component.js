@@ -238,6 +238,9 @@
       ],
       credits: {
         enabled: false
+      },
+      func: function(chart) {
+        console.log(chart);
       }
     };
 

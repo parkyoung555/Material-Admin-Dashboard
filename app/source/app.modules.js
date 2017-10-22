@@ -23,6 +23,7 @@
       'ngMaterial',
       'highcharts-ng',
       'angular-loading-bar',
+      'fluidGrid',
       'coreComponent',
       'widgetsComponent',
       'mainNavComponent',

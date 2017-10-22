@@ -19,11 +19,14 @@
     "angular-ui-router": "^1.0.9",
     "material-design-icons": "^3.0.1",
     "angular-loading-bar": "^0.9.0",
-    "gridstack": "^0.3.0"
+    "fluid-grid": "angular-fluid-grid#^0.5.0"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"
   },
   "appPath": "app",
-  "moduleName": "dashboardApp"
+  "moduleName": "dashboardApp",
+  "resolutions": {
+    "gridstack": "^0.3.0"
+  }
 }

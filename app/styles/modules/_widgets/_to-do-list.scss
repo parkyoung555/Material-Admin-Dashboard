@@ -1,3 +1,12 @@
+
+.to-do-list {
+
+  md-list {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}
+
 .add-task-dialog {
   min-width: 400px;
 

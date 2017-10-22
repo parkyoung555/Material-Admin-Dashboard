@@ -1,7 +1,7 @@
 <div class="md-padding widget-container">
-  <div class="widget-grid">
-    <div class="widget-wrapper" ng-repeat="widget in homeVm.activeWidgets">
-      <div widget-renderer="widget.component"></div>
+  <div class="widget-grid" fluid-grid="homeVm.fluidGridOptions">
+    <div class="widget-wrapper" fluid-grid-item="widget" ng-repeat="widget in homeVm.activeWidgets">
+      <div class="widget-component"></div>
     </div>
   </div>
 </div>
