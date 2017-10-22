@@ -1,10 +1,14 @@
-<md-card class="widget">
+<md-card class="widget to-do-list">
   <md-card-title>
-    <md-card-title-text>
-      <span class="md-headline">To Do</span>
+    <md-card-title-text layout="row">
+      <span class="md-headline" flex>To Do</span>
+      <md-button class="md-icon-button" ng-click="toDoListVm.addTask($event)" aria-label="add task">
+        <md-icon>add</md-icon>
+        <md-tooltip>Add task</md-tooltip>
+      </md-button>
     </md-card-title-text>
   </md-card-title>
-  <md-list>
+  <md-list ng-if="toDoListVm.getActiveTasks().length > 0">
     <md-list-item ng-repeat="task in toDoListVm.tasks | filter: { isDeleted: '!true' } track by $index" class="md-2-line">
       <md-checkbox ng-model="task.isCompleted" aria-label="complete task" ng-click="$event.stopImmediatePropagation();toDoListVm.completeTask(task);"></md-checkbox>
       <div class="md-list-item-text" layout="column">
@@ -15,7 +19,9 @@
     </md-list-item>
   </md-list>
   <div class="empty-message" ng-if="toDoListVm.getActiveTasks().length === 0">
-    <md-icon>playlist_add</md-icon>
-    <div class="md-body-2">Nothing to do.</div>
+    <div class="layout-padding">
+      <md-icon>playlist_add</md-icon>
+      <div class="md-body-2 message-text">Nothing to do.</div>
+    </div>
   </div>
 </md-card>

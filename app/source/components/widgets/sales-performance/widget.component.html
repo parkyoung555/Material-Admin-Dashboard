@@ -1,20 +1,10 @@
-<md-card class="widget">
+<md-card class="widget sales-performance">
   <md-card-title>
     <md-card-title-text layout="row">
       <span class="md-headline" flex>Sales Performance</span>
-      <md-menu>
-        <md-button class="md-icon-button" aria-label="date range" ng-click="salesPerformanceWidgetVm.openDateRangeMenu($mdMenu, $event)">
-          <md-icon>date_range</md-icon>
-          <md-tooltip>Date range</md-tooltip>
-        </md-button>
-        <md-menu-content width="4">
-          <md-menu-item ng-repeat="dateRange in salesPerformanceWidgetVm.dateRanges">
-            <md-button aria-label="profile" ng-click="salesPerformanceWidgetVm.updateDateRange(dateRange)">
-              {{dateRange}} days ago
-            </md-button>
-          </md-menu-item>
-        </md-menu-content>
-      </md-menu>
+      <md-select class="md-accent" ng-model="salesPerformanceWidgetVm.activeDateRange" ng-change="salesPerformanceWidgetVm.updateDateRange()" aria-label="Select date range">
+        <md-option class="md-accent" ng-repeat="dateRange in salesPerformanceWidgetVm.dateRanges" ng-value="dateRange">{{dateRange}} days ago</md-option>
+      </md-select>
     </md-card-title-text>
   </md-card-title>
   <div class="general-details" layout="row" layout-align="end center" layout-wrap>

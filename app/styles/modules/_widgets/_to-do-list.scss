@@ -1,0 +1,10 @@
+.add-task-dialog {
+  min-width: 400px;
+
+  .md-dialog-content {
+
+    .fields {
+      margin: $layout_unit_lg 0 0;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+<md-dialog class="add-task-dialog" aria-label="Add Task">
+  <form ng-submit="addTaskDialogVm.addTask()" name="addTaskForm" ng-cloak>
+    <md-dialog-content class="md-dialog-content">
+      <h2 class="md-title">Add Task</h2>
+      <div class="fields">
+        <md-input-container class="md-block md-accent">
+          <label>Description</label>
+          <textarea ng-model="addTaskDialogVm.description" md-maxlength="250" rows="3" md-select-on-focus required></textarea>
+        </md-input-container>
+        <md-input-container class="md-accent">
+          <label>Deadline</label>
+          <md-datepicker class="md-accent" ng-model="addTaskDialogVm.deadline" md-open-on-focus required></md-datepicker>
+        </md-input-container>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions>
+      <md-button ng-click="addTaskDialogVm.closeDialog()">Cancel</md-button>
+      <md-button class="md-accent" ng-click="addTaskDialogVm.confirm()" ng-disabled="addTaskForm.$invalid">Add</md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

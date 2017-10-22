@@ -1,22 +1,10 @@
-.widget {
-  overflow: hidden;
 
-  &.micro-widget {
-    min-height: 112px;
-    position: relative;
+.widget.sales-performance {
 
-    highchart {
-      bottom: 0;
-      left: 0;
-      right: 0;
-      position: absolute;
-    }
-  }
-  .trending-indicator {
+  md-card-title {
 
-    md-icon {
-      font-size: 16px;
-      line-height: inherit;
+    md-select {
+      margin: 0 0 $layout_unit;
     }
   }
 
@@ -49,4 +37,3 @@
     }
   }
 }
-

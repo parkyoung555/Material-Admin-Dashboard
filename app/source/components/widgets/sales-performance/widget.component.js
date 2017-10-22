@@ -18,6 +18,7 @@
       ]
     };
     vm.dateRanges = dateRanges;
+    vm.activeDateRange = dateRanges[dateRanges.length - 1];
     vm.stats = getStats(chartData);
     vm.openDateRangeMenu = openDateRangeMenu;
     vm.updateDateRange = updateDateRange;
@@ -283,14 +284,14 @@
         startDate = date - (1000 * 60 * 60 * 24 * daysAgo);
 
       for(var i = 0; i < daysAgo; i++){
-        data.push([startDate, utilityService.randomIntFromInterval(10000, 20000)]);
+        data.push([startDate, utilityService.randomIntFromInterval(10000, 20000, 2)]);
         startDate += (1000 * 60 * 60 * 24);
       }
       return data;
     }
 
-    function updateDateRange(dateRange) {
-      vm.chartConfig.series[0].data = chartData.slice(chartData.length - dateRange, chartData.length);
+    function updateDateRange() {
+      vm.chartConfig.series[0].data = chartData.slice(chartData.length - vm.activeDateRange, chartData.length);
     }
 
     function getStats(data) {

@@ -56,10 +56,12 @@
       }
     }
 
-    function addTask(description) {
+    function addTask(taskData) {
       tasks.push({
-        description: description,
-        date: new Date().getTime()
+        description: taskData.description,
+        date: taskData.deadline,
+        isCompleted: false,
+        isDeleted: false
       });
     }
 

@@ -4,8 +4,12 @@
   angular.module('toDoListComponent')
     .controller('toDoListComponent', toDoListComponent);
 
-  function toDoListComponent(toDoListService, $mdToast) {
-    var vm = this;
+  function toDoListComponent(toDoListService, $mdToast, $mdDialog) {
+    var vm = this,
+      toast = $mdToast.simple()
+      .hideDelay(6000)
+      .highlightAction(true)
+      .highlightClass('md-accent');
 
     vm.tasks = toDoListService.getTasks();
     vm.addTask = addTask;
@@ -15,16 +19,28 @@
 
     /////////////////////////////////
 
-    function addTask(description) {
-      toDoListService.addTask(description);
+    function addTask(ev) {
+      $mdDialog.show({
+        controller: 'addTaskDialogComponent',
+        controllerAs: 'addTaskDialogVm',
+        templateUrl: 'source/components/widgets/to-do-list/add-task-dialog/add-task.component.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose:true,
+        fullscreen: false
+      }).then(function(taskData) {
+        toDoListService.addTask(taskData);
+        toast
+          .textContent('Task added.')
+          .action('OK');
+
+        $mdToast.show(toast);
+      });
     }
 
     function completeTask(task) {
       if(!task.isCompleted) {
-        var toast = $mdToast.simple()
-          .hideDelay(6000)
-          .highlightAction(true)
-          .highlightClass('md-accent')
+        toast
           .action('OK')
           .textContent('Task completed.');
 
@@ -35,17 +51,14 @@
 
     function getActiveTasks() {
       return vm.tasks.filter(function(task){
-        return !task.isCompleted && !task.isDeleted;
+        return !task.isDeleted;
       });
     }
 
     function removeTask(task) {
       toDoListService.removeTask(task.id);
 
-      var toast = $mdToast.simple()
-        .hideDelay(6000)
-        .highlightAction(true)
-        .highlightClass('md-accent')
+      toast
         .textContent('Task deleted.')
         .action('UNDO');
 
@@ -56,5 +69,5 @@
       });
     }
   }
-  toDoListComponent.$inject = ['toDoListService', '$mdToast'];
+  toDoListComponent.$inject = ['toDoListService', '$mdToast', '$mdDialog'];
 })();

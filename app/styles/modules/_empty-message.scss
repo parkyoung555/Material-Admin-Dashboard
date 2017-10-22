@@ -1,0 +1,29 @@
+$_empty-message-icon-size: 80px;
+
+.empty-message {
+  padding: $layout-unit-lg;
+  text-align: center;
+
+  md-icon,
+  .message-text {
+    color: $dark-disabled__color;
+  }
+
+  md-icon {
+    color: $dark-disabled__color;
+    font-size: $_empty-message-icon-size;
+    height: $_empty-message-icon-size;
+    width: $_empty-message-icon-size;
+  }
+}
+
+.dark-mode-active {
+
+  .empty-message {
+
+    md-icon,
+    .message-text{
+      color: $light-disabled__color;
+    }
+  }
+}

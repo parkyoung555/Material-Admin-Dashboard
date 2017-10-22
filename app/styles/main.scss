@@ -2,9 +2,14 @@
 // endbower
 
 @import "variables/_theme.scss";
-@import "modules/_general";
-@import "modules/_home";
-@import "modules/_main-nav";
-@import "modules/_buttons";
-@import "modules/_widget";
-@import "modules/_settings";
+@import "modules/_general.scss";
+@import "modules/_home.scss";
+@import "modules/_main-nav.scss";
+@import "modules/_buttons.scss";
+@import "modules/_settings.scss";
+@import "modules/_empty-message.scss";
+
+@import "modules/_widgets/widget.scss";
+@import "modules/_widgets/_revenue.scss";
+@import "modules/_widgets/_sales-performance.scss";
+@import "modules/_widgets/_to-do-list.scss";

@@ -28,8 +28,9 @@
       return month ? months[month] : months;
     }
 
-    function randomIntFromInterval(min,max) {
-      return Math.floor(Math.random()*(max-min+1)+min);
+    function randomIntFromInterval(min, max, precision) {
+      precision = typeof precision === 'number' ? precision : 0;
+      return parseFloat((Math.random()*(max-min+1)+min).toFixed(precision));
     }
   }
 
