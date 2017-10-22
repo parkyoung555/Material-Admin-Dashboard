@@ -57,8 +57,8 @@
     }
 
     function getRGBString(colorArray, a) {
-      a = a || 1;
-      return 'rgba(' + colorArray[0] + ', ' + colorArray[1] + ', ' + colorArray[2] + ', ' + a + ')';
+      var alpha = typeof a === 'number' ? a : (typeof colorArray[3] === 'number' ? colorArray[3] : 1);
+      return 'rgba(' + colorArray[0] + ', ' + colorArray[1] + ', ' + colorArray[2] + ', ' + alpha + ')';
     }
 
     function setCurrentTheme(themeName) {

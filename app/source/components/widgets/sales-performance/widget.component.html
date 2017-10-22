@@ -1,13 +1,27 @@
 <md-card class="widget">
   <md-card-title>
-    <md-card-title-text>
-      <span class="md-headline">Sales Performance</span>
+    <md-card-title-text layout="row">
+      <span class="md-headline" flex>Sales Performance</span>
+      <md-menu>
+        <md-button class="md-icon-button" aria-label="date range" ng-click="salesPerformanceWidgetVm.openDateRangeMenu($mdMenu, $event)">
+          <md-icon>date_range</md-icon>
+          <md-tooltip>Date range</md-tooltip>
+        </md-button>
+        <md-menu-content width="4">
+          <md-menu-item ng-repeat="dateRange in salesPerformanceWidgetVm.dateRanges">
+            <md-button aria-label="profile" ng-click="salesPerformanceWidgetVm.updateDateRange(dateRange)">
+              {{dateRange}} days ago
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
     </md-card-title-text>
   </md-card-title>
-  <md-card-content>
-    <div class="general-details"></div>
-    <div class="performance-chart">
-      <highchart id="sales-performance-widget-chart-{{$id}}" config="salesPerformanceWidgetVm.chartConfig"></highchart>
+  <div class="general-details" layout="row" layout-align="end center" layout-wrap>
+    <div class="stat" ng-repeat="stat in salesPerformanceWidgetVm.stats">
+      <div class="md-caption stat-label">{{stat.label}}</div>
+      <div class="md-headline stat-value">{{stat.value | currency}}</div>
     </div>
-  </md-card-content>
+  </div>
+  <highchart id="sales-performance-widget-chart-{{$id}}" config="salesPerformanceWidgetVm.chartConfig"></highchart>
 </md-card>

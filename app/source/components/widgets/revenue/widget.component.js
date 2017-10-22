@@ -9,8 +9,13 @@
       months = utilityService.getMonths();
 
     vm.widgetTheme = {
-      primary: 700,
-      accent: 'A400'
+      default: {
+        background: 'primary-700',
+        area: {
+          fill: ['primary', '700', 'contrast'],
+          line: ['accent', '200', 'value']
+        }
+      }
     };
     vm.revenue = utilityService.randomIntFromInterval(1500000, 2500000);
     vm.trendPercent = 80;
@@ -90,12 +95,14 @@
       }
     };
 
-    $scope.$watch(function(){
-      return themeService.currentTheme;
+    $scope.$watchCollection(function(){
+      return [themeService.currentTheme, themeService.themeSuffix];
     }, function(theme){
-      vm.currentTheme = theme;
-      setChartColors(theme);
+      vm.currentTheme = theme[0] + theme[1];
+      vm.darkTheme = !!theme[1];
+      setChartColors(vm.currentTheme);
     });
+
     ////////////////////////////
 
     function generateData() {
@@ -107,13 +114,13 @@
     }
 
     function setChartColors(theme) {
-      var contrastColor = themeService.getColor(theme, 'primary', vm.widgetTheme.primary, 'contrast'),
-        accentColor = themeService.getColor(theme, 'accent', vm.widgetTheme.accent, 'value');
+      var areaColor = themeService.getColor(theme, vm.widgetTheme.default.area.fill[0], vm.widgetTheme.default.area.fill[1], vm.widgetTheme.default.area.fill[2]),
+        lineColor = themeService.getColor(theme, vm.widgetTheme.default.area.line[0], vm.widgetTheme.default.area.line[1], vm.widgetTheme.default.area.line[2]);
 
-      vm.chartConfig.plotOptions.area.fillColor = themeService.getRGBString(contrastColor, .24);
-      vm.chartConfig.plotOptions.area.lineColor = themeService.getRGBString(accentColor);
-      vm.chartConfig.plotOptions.area.marker.fillColor = themeService.getRGBString(accentColor);
-      vm.chartConfig.plotOptions.area.states.hover.halo.attributes.fill = themeService.getRGBString(contrastColor, .12);
+      vm.chartConfig.plotOptions.area.fillColor = themeService.getRGBString(areaColor, .24);
+      vm.chartConfig.plotOptions.area.lineColor = themeService.getRGBString(lineColor);
+      vm.chartConfig.plotOptions.area.marker.fillColor = themeService.getRGBString(lineColor);
+      vm.chartConfig.plotOptions.area.states.hover.halo.attributes.fill = themeService.getRGBString(lineColor, .12);
     }
   }
   revenueWidgetComponent.$inject = ['$scope', 'themeService', 'utilityService'];
