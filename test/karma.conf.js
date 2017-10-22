@@ -34,8 +34,10 @@ module.exports = function(config) {
       'bower_components/highcharts/highcharts.js',
       'bower_components/highcharts-ng/dist/highcharts-ng.js',
       'bower_components/angular-ui-router/release/angular-ui-router.js',
-      'bower_components/fluid-grid/dist/fluid-grid.js',
       'bower_components/angular-loading-bar/build/loading-bar.js',
+      'bower_components/lodash/lodash.js',
+      'bower_components/jquery-ui/jquery-ui.js',
+      'bower_components/gridstack/dist/gridstack.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

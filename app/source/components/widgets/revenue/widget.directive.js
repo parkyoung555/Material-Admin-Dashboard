@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('revenueWidgetComponent')
-    .directive('revenueWidget', function(){
+    .directive('revenue', function(){
       return {
         restrict: 'EA',
         templateUrl: 'source/components/widgets/revenue/widget.component.html',

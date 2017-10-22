@@ -1,7 +1,7 @@
 <div class="md-padding widget-container">
-  <revenue-widget></revenue-widget>
-  <sales-performance-widget></sales-performance-widget>
-  <to-do-list></to-do-list>
-  <revenue-widget></revenue-widget>
-  <revenue-widget></revenue-widget>
+  <div class="widget-grid">
+    <div class="widget-wrapper" ng-repeat="widget in homeVm.activeWidgets">
+      <div widget-renderer="widget.component"></div>
+    </div>
+  </div>
 </div>

@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('salesPerformanceWidgetComponent')
-    .directive('salesPerformanceWidget', function(){
+    .directive('salesPerformance', function(){
       return {
         restrict: 'EA',
         templateUrl: 'source/components/widgets/sales-performance/widget.component.html',
