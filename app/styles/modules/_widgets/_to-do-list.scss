@@ -4,6 +4,13 @@
   md-list {
     overflow-y: auto;
     overflow-x: hidden;
+
+    .md-list-item-text {
+
+      > * {
+        white-space: normal !important;
+      }
+    }
   }
 }
 

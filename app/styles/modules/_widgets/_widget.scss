@@ -7,6 +7,17 @@
     min-height: 112px;
     position: relative;
 
+    md-card-title {
+
+      md-card-title-text {
+        width: 100%;
+
+        > span{
+          margin: 0 48px 0 0;
+        }
+      }
+    }
+
     highchart {
       bottom: 0;
       left: 0;
@@ -16,6 +27,9 @@
   }
 
   .trending-indicator {
+    position: absolute;
+    right: 0;
+    top: $layout_unit;
 
     md-icon {
       font-size: 16px;

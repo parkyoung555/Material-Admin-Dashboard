@@ -18,7 +18,18 @@
         data: {
           pageTitle: 'Dashboard',
           menuIcon: 'dashboard',
-          priority: 1
+          priority: 1,
+          actions: [
+            {
+              label: 'Reorganize',
+              icon: 'pan_tool',
+              method: 'toggleReorgMode',
+              toggle: {
+                label: 'Set',
+                icon: 'check'
+              }
+            }
+          ]
         }
       })
   }

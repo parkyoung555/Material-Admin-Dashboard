@@ -4,4 +4,8 @@
   md-card.widget {
     margin: 0 0;
   }
+  
+  &.widget-reorg-mode-active {
+    background-image: url('../../images/gridme.png');
+  }
 }

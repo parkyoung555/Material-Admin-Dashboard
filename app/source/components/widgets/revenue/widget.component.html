@@ -1,8 +1,8 @@
 <md-card class="widget micro-widget revenue" md-colors="{backgroundColor: '{{revenueWidgetVm.widgetTheme.default.background}}'}" >
   <md-card-title>
-    <md-card-title-text layout="column">
-      <span class="md-body-1" layout="row">
-        <span flex>Total Revenue</span>
+    <md-card-title-text>
+      <span class="md-body-1">
+        <span>Total Revenue</span>
         <span class="trending-indicator md-caption">
           <span>{{revenueWidgetVm.trendPercent}}%</span>
           <md-icon aria-label="trending {{revenueWidgetVm.trendPercent > 0 ? 'up': 'down'}}">
@@ -11,7 +11,10 @@
           </md-icon>
         </span>
       </span>
-      <span class="md-headline">{{revenueWidgetVm.revenue | currency}}</span>
+      <span class="md-headline" md-truncate>
+        {{revenueWidgetVm.revenue | currency}}
+        <md-tooltip>{{revenueWidgetVm.revenue}}</md-tooltip>
+      </span>
     </md-card-title-text>
   </md-card-title>
   <highchart id="revenue-widget-chart-{{$id}}" config="revenueWidgetVm.chartConfig"></highchart>

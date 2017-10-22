@@ -6,6 +6,8 @@
 
   function navigationService($state) {
     this.menuItems = getNavigationItems();
+    this.pageActions = [];
+    this.setPageActions = setPageActions;
 
     /////////////////////
 
@@ -33,6 +35,11 @@
         }
       }
       return navItems;
+    }
+
+    function setPageActions() {
+      var states = $state.current;
+      this.pageActions =  states.data.actions;
     }
   }
   navigationService.$inject = ['$state'];

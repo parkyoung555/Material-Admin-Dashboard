@@ -17,4 +17,5 @@
       }
     });
   }
+  widgetsConfig.$inject = [];
 })();
