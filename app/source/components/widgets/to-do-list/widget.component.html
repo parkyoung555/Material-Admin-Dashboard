@@ -1,0 +1,21 @@
+<md-card class="widget">
+  <md-card-title>
+    <md-card-title-text>
+      <span class="md-headline">To Do</span>
+    </md-card-title-text>
+  </md-card-title>
+  <md-list>
+    <md-list-item ng-repeat="task in toDoListVm.tasks | filter: { isDeleted: '!true' } track by $index" class="md-2-line">
+      <md-checkbox ng-model="task.isCompleted" aria-label="complete task" ng-click="$event.stopImmediatePropagation();toDoListVm.completeTask(task);"></md-checkbox>
+      <div class="md-list-item-text" layout="column">
+        <h3>{{ task.description }}</h3>
+        <h4 md-colors="{color: 'primary-hue-2'}">{{ task.date | date: 'mediumDate' }}</h4>
+      </div>
+      <md-icon class="md-secondary" ng-click="toDoListVm.removeTask(task)" aria-label="remove task">delete</md-icon>
+    </md-list-item>
+  </md-list>
+  <div class="empty-message" ng-if="toDoListVm.getActiveTasks().length === 0">
+    <md-icon>playlist_add</md-icon>
+    <div class="md-body-2">Nothing to do.</div>
+  </div>
+</md-card>

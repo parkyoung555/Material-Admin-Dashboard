@@ -3,6 +3,7 @@
 
   angular.module('widgetsComponent', [
     'revenueWidgetComponent',
-    'salesPerformanceWidgetComponent'
+    'salesPerformanceWidgetComponent',
+    'toDoListComponent'
   ]);
 })();

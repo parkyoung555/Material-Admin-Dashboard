@@ -4,8 +4,9 @@
   angular.module('dashboardApp')
     .config(appConfig);
 
-  function appConfig(cfpLoadingBarProvider) {
+  function appConfig(cfpLoadingBarProvider, $qProvider) {
     cfpLoadingBarProvider.includeSpinner = false;
+    $qProvider.errorOnUnhandledRejections(false);
   }
-  appConfig.$inject = ['cfpLoadingBarProvider'];
+  appConfig.$inject = ['cfpLoadingBarProvider', '$qProvider'];
 })();
