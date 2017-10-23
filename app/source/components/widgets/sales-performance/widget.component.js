@@ -18,7 +18,7 @@
       ]
     };
     vm.dateRanges = dateRanges;
-    vm.activeDateRange = dateRanges[dateRanges.length - 1];
+    vm.activeDateRange = dateRanges[1];
     vm.stats = getStats(chartData);
     vm.openDateRangeMenu = openDateRangeMenu;
     vm.updateDateRange = updateDateRange;

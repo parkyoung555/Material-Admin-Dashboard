@@ -38,41 +38,42 @@
       {
         id: 0,
         widgetId: 1,
-        sizeX: 2, sizeY: 2,
+        sizeX: widgetsUtilityService.defaultSizes['revenue'][0], sizeY: widgetsUtilityService.defaultSizes['revenue'][1],
         component: 'revenue'
       },
       {
         id: 1,
         widgetId: 1,
-        sizeX: 2, sizeY: 2,
+        sizeX: widgetsUtilityService.defaultSizes['revenue'][0], sizeY: widgetsUtilityService.defaultSizes['revenue'][1],
         component: 'revenue'
       },
       {
         id: 2,
         widgetId: 1,
-        sizeX: 2, sizeY: 2,
+        sizeX: widgetsUtilityService.defaultSizes['revenue'][0], sizeY: widgetsUtilityService.defaultSizes['revenue'][1],
         component: 'revenue'
       },
       {
         id: 3,
         widgetId: 1,
-        sizeX: 2, sizeY: 2,
+        sizeX: widgetsUtilityService.defaultSizes['revenue'][0], sizeY: widgetsUtilityService.defaultSizes['revenue'][1],
         component: 'revenue'
       },
       {
         id: 4,
         widgetId: 2,
-        sizeX: 8, sizeY: 7,
+        sizeX: widgetsUtilityService.defaultSizes['sales-performance'][0], sizeY: widgetsUtilityService.defaultSizes['sales-performance'][1],
         component: 'sales-performance'
       },
       {
         id: 5,
         widgetId: 3,
-        sizeX: 4, sizeY: 8,
+        sizeX: widgetsUtilityService.defaultSizes['to-do-list'][0], sizeY: widgetsUtilityService.defaultSizes['to-do-list'][1],
         component: 'to-do-list'
       }
     ];
 
+    this.addWidget = addWidget;
     this.removeWidget = removeWidget;
 
     ///////////////////////////////////
@@ -84,6 +85,15 @@
           return true;
         }
       }
+    }
+
+    function addWidget(widgetName) {
+      this.activeWidgets.push({
+        id: new Date().getTime(),
+        sizeX: widgetsUtilityService.defaultSizes[widgetName][0],
+        sizeY: widgetsUtilityService.defaultSizes[widgetName][1],
+        component: widgetName
+      });
     }
   }
   profileService.$inject = ['widgetsUtilityService'];

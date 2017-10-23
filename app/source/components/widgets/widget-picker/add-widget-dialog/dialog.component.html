@@ -1,0 +1,18 @@
+<md-dialog class="add-widget-dialog" aria-label="Add Widget">
+  <form ng-submit="addWidgetDialogVm.addWidget()" name="addWidgetForm" ng-cloak>
+    <md-dialog-content class="md-dialog-content">
+      <h2 class="md-title">Select a widget</h2>
+      <div class="widget-list">
+        <md-radio-group ng-model="addWidgetDialogVm.selectedWidget" required>
+          <md-radio-button ng-value="availableWidget" ng-repeat="availableWidget in addWidgetDialogVm.availableWidgets" aria-label="Widget {{availableWidget}}">
+            <div widget-renderer="availableWidget"></div>
+          </md-radio-button>
+        </md-radio-group>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions>
+      <md-button ng-click="addWidgetDialogVm.closeDialog()">Cancel</md-button>
+      <md-button class="md-accent" ng-click="addWidgetDialogVm.confirm()" ng-disabled="addWidgetForm.$invalid">Add</md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

@@ -6,6 +6,11 @@
 
   function widgetsUtilityService($timeout) {
     this.reflowHighcharts = reflowHighcharts;
+    this.defaultSizes = {
+      'revenue': [2, 2],
+      'sales-performance': [8, 7],
+      'to-do-list': [4, 8]
+    };
 
     //////////////////////////
 

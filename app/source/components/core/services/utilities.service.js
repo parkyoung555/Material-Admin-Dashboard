@@ -7,6 +7,7 @@
   function utilityService() {
 
     this.unCamelCase = unCamelCase;
+    this.camelToDash = camelToDash;
     this.getMonths = getMonths;
     this.randomIntFromInterval = randomIntFromInterval;
 
@@ -19,6 +20,10 @@
         .replace(/^./, function (str) {
           return str.toUpperCase();
         })
+    }
+
+    function camelToDash(str) {
+      return str.replace(/([A-Z])/g, function(g){ return '-' + g[0].toLowerCase(); });
     }
 
     function getMonths(month) {

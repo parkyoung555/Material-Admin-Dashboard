@@ -1,0 +1,26 @@
+
+.widget-picker {
+  min-height: 104px;
+
+  .md-fab-bottom-right.md-fab {
+    position: fixed;
+  }
+}
+
+.add-widget-dialog {
+
+  .widget-list {
+    margin: $layout_unit_lg 0 0;
+
+    md-radio-button {
+
+      .md-label {
+
+        .widget {
+          margin: 0 0;
+          pointer-events: none;
+        }
+      }
+    }
+  }
+}

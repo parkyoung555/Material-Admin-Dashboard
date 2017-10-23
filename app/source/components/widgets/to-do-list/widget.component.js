@@ -23,7 +23,7 @@
       $mdDialog.show({
         controller: 'addTaskDialogComponent',
         controllerAs: 'addTaskDialogVm',
-        templateUrl: 'source/components/widgets/to-do-list/add-task-dialog/add-task.component.html',
+        templateUrl: 'source/components/widgets/to-do-list/add-task-dialog/dialog.component.html',
         parent: angular.element(document.body),
         targetEvent: ev,
         clickOutsideToClose:true,
