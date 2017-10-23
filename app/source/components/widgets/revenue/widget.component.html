@@ -7,6 +7,7 @@
           <span>{{revenueWidgetVm.trendPercent}}%</span>
           <md-icon aria-label="trending {{revenueWidgetVm.trendPercent > 0 ? 'up': 'down'}}">
             <span ng-if="revenueWidgetVm.trendPercent > 0">trending_up</span>
+            <span ng-if="revenueWidgetVm.trendPercent === 0">trending_flat</span>
             <span ng-if="revenueWidgetVm.trendPercent < 0">trending_down</span>
           </md-icon>
         </span>

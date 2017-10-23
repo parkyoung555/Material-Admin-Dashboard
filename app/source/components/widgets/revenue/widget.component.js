@@ -18,7 +18,6 @@
       }
     };
     vm.revenue = utilityService.randomIntFromInterval(1500000, 2500000, 2);
-    vm.trendPercent = 80;
     vm.chartConfig = {
       chart: {
         type: 'area',
@@ -110,6 +109,8 @@
       for(var i = 0, len = new Date().getMonth() + 1; i < len; i++){
         data.push([months[i], utilityService.randomIntFromInterval(150000, 250000, 2)]);
       }
+
+      vm.trendPercent = Math.floor(((data[data.length - 1][1] - data[0][1]) / data[0][1]) * 100);
       return data;
     }
 
