@@ -27,6 +27,7 @@
       'coreComponent',
       'widgetsComponent',
       'mainNavComponent',
+      'loginComponent',
       'settingsComponent',
       'homeComponent',
       'contactsComponent'
