@@ -1,0 +1,37 @@
+
+.widget.weather {
+
+    div.weather-container {
+        padding: 1rem;
+        display: flex;
+
+        .weather-info {
+            display: flex;
+            flex-wrap: wrap;
+            width:calc(100% - .5rem);
+            margin-left: .5rem;
+
+            span {
+                width: 100%;
+
+                &.small-text {
+                    font-size: .75rem;
+                    color: $dark-secondary__color;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: $screen_sm) {
+    body {
+
+        .widget.weather {
+
+            .wrapper {
+                overflow-y: auto;
+            }
+
+        }
+    }
+}

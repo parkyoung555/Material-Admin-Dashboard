@@ -5,6 +5,7 @@
     'revenueWidgetComponent',
     'salesPerformanceWidgetComponent',
     'toDoListComponent',
+    'weatherWidgetComponent',
     'widgetPickerComponent'
   ]);
 })();
