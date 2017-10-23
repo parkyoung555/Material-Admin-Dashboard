@@ -9,7 +9,7 @@
       columns: 8, // the width of the grid, in columns
       pushing: true, // whether to push other items out of the way on move or resize
       floating: true, // whether to automatically float items up so they stack (you can temporarily disable if you are adding unsorted items with ng-repeat)
-      margins: [0, 0],
+      margins: [16, 16],
       minRow: 1,
       width:'auto',
       maxRows: 1000,

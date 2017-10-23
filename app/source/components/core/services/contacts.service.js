@@ -24,7 +24,15 @@
     }
 
     function success(data) {
-      return data.data.results;
+      var contacts = data.data.results;
+
+      contacts.sort(function(a, b) {
+        var textA = (a.name.first + ' ' + a.name.last).toUpperCase();
+        var textB =(b.name.first + ' ' + b.name.last).toUpperCase();
+        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+      });
+
+      return contacts;
     }
 
     function error(err) {

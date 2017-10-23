@@ -1,11 +1,38 @@
 .widget-container {
-  //padding: 0 0;
+  padding: 0 0;
 
   md-card.widget {
     margin: 0 0;
   }
-  
+
   &.widget-reorg-mode-active {
-    background-image: url('../../images/gridme.png');
+    background-image: url('../../images/graphy.png');
+
+    .widget-wrapper:hover {
+      box-shadow: 0 0 0 2px #F44336;
+      cursor: crosshair;
+    }
+
+    md-card.widget {
+      pointer-events: none;
+    }
+  }
+}
+
+.fluid-grid .fluid-grid-item {
+  margin: $layout_unit;
+  text-align: inherit;
+}
+
+.dark-mode-active {
+
+  .widget-container {
+
+    &.widget-reorg-mode-active {
+
+      .widget-wrapper:hover {
+        //box-shadow: 0 0 0 2px $light-secondary__color;
+      }
+    }
   }
 }
