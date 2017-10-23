@@ -1,16 +1,50 @@
 .widget-container {
+  min-height: 100%;
   padding: 0 0;
 
-  md-card.widget {
-    margin: 0 0;
+  .widget-wrapper {
+
+    .widget-content {
+      height: 100%;
+      position: relative;
+      width: 100%;
+
+      $_widget-action-button-size: 24px;
+      .remove-widget-button {
+        height: $_widget-action-button-size;
+        line-height: $_widget-action-button-size;
+        min-height: $_widget-action-button-size;
+        min-width: $_widget-action-button-size;
+        padding: 0 0;
+        position: absolute;
+        right: -$_widget-action-button-size / 2;
+        top: -$_widget-action-button-size / 2;
+        width: $_widget-action-button-size;
+        z-index: 2;
+
+        md-icon {
+          font-size: 16px;
+          height: 16px;
+          line-height: inherit;
+          width: 16px;
+        }
+      }
+
+      md-card.widget {
+        margin: 0 0;
+      }
+    }
   }
 
   &.widget-reorg-mode-active {
     background-image: url('../../images/graphy.png');
 
-    .widget-wrapper:hover {
-      box-shadow: 0 0 0 2px #F44336;
-      cursor: crosshair;
+    .widget-wrapper {
+
+      &:hover {
+        box-shadow: 0 0 0 2px #F44336;
+        cursor: crosshair;
+      }
     }
 
     md-card.widget {

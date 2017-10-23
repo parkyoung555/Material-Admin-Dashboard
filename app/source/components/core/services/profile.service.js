@@ -36,30 +36,55 @@
     };
     this.activeWidgets = [
       {
+        id: 0,
+        widgetId: 1,
         sizeX: 2, sizeY: 2,
         component: 'revenue'
       },
       {
+        id: 1,
+        widgetId: 1,
         sizeX: 2, sizeY: 2,
         component: 'revenue'
       },
       {
+        id: 2,
+        widgetId: 1,
         sizeX: 2, sizeY: 2,
         component: 'revenue'
       },
       {
+        id: 3,
+        widgetId: 1,
         sizeX: 2, sizeY: 2,
         component: 'revenue'
       },
       {
+        id: 4,
+        widgetId: 2,
         sizeX: 8, sizeY: 7,
         component: 'sales-performance'
       },
       {
+        id: 5,
+        widgetId: 3,
         sizeX: 4, sizeY: 8,
         component: 'to-do-list'
       }
     ];
+
+    this.removeWidget = removeWidget;
+
+    ///////////////////////////////////
+
+    function removeWidget(id) {
+      for(var i = 0, len = this.activeWidgets.length; i < len; i++) {
+        if(this.activeWidgets[i].id === id) {
+          this.activeWidgets.splice(i, 1);
+          return true;
+        }
+      }
+    }
   }
   profileService.$inject = ['widgetsUtilityService'];
 })();

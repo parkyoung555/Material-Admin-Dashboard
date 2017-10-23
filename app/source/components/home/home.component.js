@@ -10,6 +10,7 @@
     vm.fluidGridOptions = profileService.fluidGridOptions;
     vm.activeWidgets = profileService.activeWidgets;
     vm.reorgModeActive = false;
+    vm.removeWidget = profileService.removeWidget;
 
     $scope.$on('isCompact', function(ev, data) {
       $timeout(function(){

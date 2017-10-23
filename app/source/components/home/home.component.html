@@ -1,7 +1,14 @@
 <div class="md-padding widget-container" ng-class="{'widget-reorg-mode-active': homeVm.reorgModeActive}">
   <div class="widget-grid" fluid-grid="homeVm.fluidGridOptions">
     <div class="widget-wrapper" fluid-grid-item="widget" ng-repeat="widget in homeVm.activeWidgets">
-      <div class="widget-component"></div>
+      <div class="widget-content">
+        <md-button class="md-icon-button md-raised remove-widget-button" aria-label="remove widget"
+                   ng-if="homeVm.reorgModeActive" ng-click="homeVm.removeWidget(widget.id)">
+          <md-icon>close</md-icon>
+          <md-tooltip>Remove widget</md-tooltip>
+        </md-button>
+        <div class="widget-component"></div>
+      </div>
     </div>
   </div>
 </div>
