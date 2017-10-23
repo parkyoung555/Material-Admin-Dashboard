@@ -1,0 +1,22 @@
+<md-card class="widget weather">
+  <md-card-title flex="none">
+    <md-card-title-text layout="row">
+      <span class="md-headline" flex>Weather @ {{weatherVm.city.name}}, {{weatherVm.city.country}}</span>
+    </md-card-title-text>
+  </md-card-title>
+  <div class="wrapper" flex>
+    <div ng-repeat="weather in weatherVm.weather track by $index" class="weather-container">
+      <img ng-src="{{weatherVm.getIconUrl(weather.weather[0])}}" alt="{{weather.weather[0].descriptions}}">
+      <div class="weather-info">
+        <span class="time">{{weatherVm.getDate(weather)}}</span>
+        <span class="small-text">min {{weather.temp.min}}</span>
+        <span class="small-text">max {{weather.temp.max}}</span>
+      </div>
+    </div>
+    <div class="empty-message" ng-if="weatherVm.weather.length === 0" layout="column" layout-align="center center" flex>
+      <div class="layout-padding">
+        <div class="md-body-2 message-text">No weather data.</div>
+      </div>
+    </div>
+  </div>
+</md-card>

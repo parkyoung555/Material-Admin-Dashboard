@@ -70,6 +70,12 @@
         widgetId: 3,
         sizeX: widgetsUtilityService.defaultSizes['to-do-list'][0], sizeY: widgetsUtilityService.defaultSizes['to-do-list'][1],
         component: 'to-do-list'
+      },
+      {
+        id: 6,
+        widgetId: 4,
+        sizeX: widgetsUtilityService.defaultSizes['weather'][0], sizeY: widgetsUtilityService.defaultSizes['weather'][1],
+        component: 'weather'
       }
     ];
 
