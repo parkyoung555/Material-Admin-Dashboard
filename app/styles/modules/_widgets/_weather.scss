@@ -1,37 +1,61 @@
-
 .widget.weather {
 
-    div.weather-container {
-        padding: 1rem;
-        display: flex;
+  .jumbo {
 
-        .weather-info {
-            display: flex;
-            flex-wrap: wrap;
-            width:calc(100% - .5rem);
-            margin-left: .5rem;
-
-            span {
-                width: 100%;
-
-                &.small-text {
-                    font-size: .75rem;
-                    color: $dark-secondary__color;
-                }
-            }
-        }
+    img {
+      width: 60%;
+      height: 100%;
     }
+
+    .condition {
+
+      span {
+        font-size: .8rem;
+      }
+
+      span.label {
+        color: $dark-secondary__color;
+      }
+    }
+  }
+
+  .forecast {
+
+    h4 {
+      margin: .25rem auto;
+    }
+
+    img {
+      width: 100%;
+    }
+
+    span.low {
+      margin: .25rem auto auto auto;
+      color: $dark-secondary__color;
+    }
+
+    span.high {
+      margin: auto auto .24rem auto;
+    }
+  }
 }
 
-@media screen and (min-width: $screen_sm) {
-    body {
+@media screen and (min-width: $screen_xs) {
 
-        .widget.weather {
+  .widget.weather {
 
-            .wrapper {
-                overflow-y: auto;
-            }
+    .jumbo {
 
-        }
+      span.temperature {
+        font-size: 2rem;
+      }
     }
+
+    .forecast {
+
+      span.label {
+        display: none;
+      }
+    }
+  }
 }
