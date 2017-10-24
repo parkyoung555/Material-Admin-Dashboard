@@ -20,18 +20,20 @@
       });
 
       states.sort(function(a, b) {
-        var p1 = a.data.priority || 0,
-          p2 = b.data.priority || 0;
+        var p1 = a.data ? (a.data.priority || 0) : 0,
+          p2 = b.data ? (b.data.priority || 0) : 0;
         return p2 - p1;
       });
 
       for(var i = 0, len = states.length; i < len; i++) {
         if(!states[i].abstract && !!states[i].url) {
-          navItems.push({
-            label: states[i].data.pageTitle,
-            icon: states[i].data.menuIcon,
-            state: states[i].name
-          });
+          if(states[i].data) {
+            navItems.push({
+              label: states[i].data.pageTitle,
+              icon: states[i].data.menuIcon,
+              state: states[i].name
+            });
+          }
         }
       }
       return navItems;
@@ -39,7 +41,10 @@
 
     function setPageActions() {
       var states = $state.current;
-      this.pageActions =  states.data.actions;
+
+      if(states.data &&  states.data.actions) {
+        this.pageActions =  states.data.actions;
+      }
     }
   }
   navigationService.$inject = ['$state'];

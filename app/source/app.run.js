@@ -16,6 +16,11 @@
       profileService.fluidGridOptions.draggable.enabled = false;
       profileService.fluidGridOptions.resizable.enabled = false;
     });
+    $transitions.onError({}, function(t){
+      if (t._error.detail === "AUTH_REQUIRED") {
+        $state.go('login');
+      }
+    });
   }
   appRun.$inject = ['$rootScope', '$state', '$transitions', 'widgetsUtilityService', 'navigationService', 'profileService'];
 })();

@@ -2,8 +2,8 @@
   <md-card-title flex="none">
     <md-card-title-text layout="row">
       <span class="md-headline" flex>Sales Performance</span>
-      <md-select class="md-accent" ng-model="salesPerformanceWidgetVm.activeDateRange" ng-change="salesPerformanceWidgetVm.updateDateRange()" aria-label="Select date range">
-        <md-option class="md-accent" ng-repeat="dateRange in salesPerformanceWidgetVm.dateRanges" ng-value="dateRange">{{dateRange}} days ago</md-option>
+      <md-select ng-model="salesPerformanceWidgetVm.activeDateRange" ng-change="salesPerformanceWidgetVm.updateDateRange()" aria-label="Select date range">
+        <md-option ng-repeat="dateRange in salesPerformanceWidgetVm.dateRanges" ng-value="dateRange">{{dateRange}} days ago</md-option>
       </md-select>
     </md-card-title-text>
   </md-card-title>

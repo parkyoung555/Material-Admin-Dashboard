@@ -7,9 +7,12 @@ md-toolbar.compact {
     max-height: $toolbar-compact__height;
   }
 
-  &.md-default-theme:not(.md-menu-toolbar) md-icon {
-    color: $dark-secondary__color;
-    fill: $dark-secondary__color;
+  &.md-default-theme {
+
+    &:not(.md-menu-toolbar) md-icon {
+      color: $dark-secondary__color;
+      fill: $dark-secondary__color;
+    }
   }
 }
 

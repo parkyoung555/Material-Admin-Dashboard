@@ -1,18 +1,59 @@
-<md-tabs md-dynamic-height>
-  <md-tab label="Email" aria-label="Email">
-    <md-content class="md-padding">
-      <md-input-container class="md-block">
-        <label>Email</label>
-        <input ng-model="loginVm.email" name="email" required/>
-      </md-input-container>
-    </md-content>
-  </md-tab>
-  <md-tab label="Password" aria-label="Password" name="password" required>
-    <md-content class="md-padding">
-      <md-input-container class="md-block">
-        <label>Password</label>
-        <input ng-model="loginVm.password" name="email" required/>
-      </md-input-container>
-    </md-content>
-  </md-tab>
-</md-tabs>
+<div class="login-container" layout="column" layout-align="center center" flex>
+  <md-card class="login-card">
+    <div class="login-fixed-header" layout-align="center center">
+      <div class="user-icon">
+        <md-icon>person</md-icon>
+        <md-progress-circular md-mode="indeterminate" class="md-accent" md-diameter="74" ng-if="loginVm.loading" ng-disabled="!loginVm.loading"></md-progress-circular>
+      </div>
+      <div class="greeting md-headline">Sign in</div>
+    </div>
+    <md-tabs md-selected="loginVm.loginFormIndex" md-dynamic-height md-no-ink-bar>
+      <md-tab label="Email" aria-label="Email">
+        <form name="loginFormEmail" ng-submit="loginVm.goToTab(1)" aria-label="Login form email">
+          <md-card-content>
+            <md-input-container class="md-block" md-is-error="loginVm.emailInvalid">
+              <label>Email</label>
+              <input ng-model="loginVm.email" name="email" ng-pattern="/^.+@.+\..+$/" focus-on="loginVm.emailFocus" required/>
+            </md-input-container>
+            <div class="additional-login-actions">
+              <div class="actions-title md-caption">Sign in with</div>
+              <div class="login-actions">
+                <md-button class="md-icon-button" ng-click="loginVm.signInWithFacebook()" aria-label="Facebook">
+                  <md-icon md-svg-icon="facebook"></md-icon>
+                  <md-tooltip>Facebook</md-tooltip>
+                </md-button>
+                <!--<span class="md-caption">- or -</span>-->
+                <md-button class="md-icon-button" ng-click="loginVm.signInWithGoogle()" aria-label="Google plus">
+                  <md-icon md-svg-icon="google-plus"></md-icon>
+                  <md-tooltip>Google+</md-tooltip>
+                </md-button>
+              </div>
+            </div>
+          </md-card-content>
+          <md-card-actions layout="row" layout-align="end center">
+            <md-button ng-click="loginVm.goToTab(1)" class="md-accent md-raised" ng-disabled="loginFormEmail.$invalid">Next</md-button>
+          </md-card-actions>
+        </form>
+      </md-tab>
+      <md-tab label="Password" aria-label="Password">
+        <form name="loginFormPassword" ng-submit="loginVm.signInWithEmailAndPassword(loginVm.email, loginVm.password)" aria-label="Login form password">
+          <md-card-content>
+            <md-input-container class="md-block" md-is-error="loginVm.passwordInvalid">
+              <label>Password</label>
+              <input ng-model="loginVm.password" name="email" type="password" md-autofocus focus-on="loginVm.passwordFocus" required/>
+            </md-input-container>
+            <div class="additional-login-actions">
+              <a class="actions-title md-caption" md-colors="{color: '{{loginVm.currentTheme}}-accent-500'}" ng-click="">Forgot your password?</a>
+            </div>
+          </md-card-content>
+          <md-card-actions layout="row" layout-align="end center">
+            <md-button ng-click="loginVm.goToTab(0)" class="md-accent">Back</md-button>
+            <span flex></span>
+            <md-button ng-click="loginVm.signInWithEmailAndPassword(loginVm.email, loginVm.password)" class="md-accent md-raised" ng-disabled="loginFormPassword.$invalid">Sign in</md-button>
+          </md-card-actions>
+        </form>
+      </md-tab>
+    </md-tabs>
+  </md-card>
+
+</div>

@@ -1,5 +1,5 @@
 <md-toolbar class="md-whiteframe-2dp compact md-primary"
-            md-colors="{ backgroundColor: '{{$state.current.data.pageColor ? topNavVm.currentTheme + '-' + $state.current.data.pageColor : topNavVm.currentTheme + '-primary'}}' }">
+            md-colors="{ backgroundColor: '{{$state.current.data.pageColor ? topNavVm.currentTheme + '-' + $state.current.data.pageColor : topNavVm.currentTheme + '-primary' + (topNavVm.currentTheme === 'default' ? '-50': '')}}' }">
   <div class="md-toolbar-tools">
     <md-button class="md-icon-button" aria-label="menu" ng-click="topNavVm.toggleCompactMenu()">
       <md-icon>menu</md-icon>
@@ -7,7 +7,6 @@
     </md-button>
     <h2 flex md-truncate>{{$state.current.data.pageTitle}}</h2>
     <md-button ng-repeat="pageAction in topNavVm.pageActions" class="md-icon-button" aria-label="{{pageAction.label}}"
-               ng-class="{'md-accent': pageAction.toggle && topNavVm[pageAction.method + 'Status']}"
                ng-init="topNavVm[pageAction.method + 'Status'] = false"
                ng-click="topNavVm[pageAction.method + 'Status'] = topNavVm.pageActionMethods[pageAction.method]()">
       <md-icon>{{topNavVm[pageAction.method + 'Status'] ? pageAction.toggle.icon : pageAction.icon}}</md-icon>

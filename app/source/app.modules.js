@@ -21,6 +21,7 @@
       'ngTouch',
       'ui.router',
       'ngMaterial',
+      'firebase',
       'highcharts-ng',
       'angular-loading-bar',
       'fluidGrid',

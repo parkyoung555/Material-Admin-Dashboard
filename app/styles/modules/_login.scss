@@ -1,0 +1,105 @@
+
+.login-container {
+  height: 100%;
+  padding: $layout_unit;
+
+  > md-card.login-card {
+    $_user-icon-size: 64px;
+
+    .login-fixed-header {
+      padding: $layout-unit-xl $layout-unit-md 0;
+      text-align: center;
+
+      .user-icon {
+        position: relative;
+
+        md-progress-circular {
+          bottom: 0;
+          left: 0;
+          margin: -5px;
+          position: absolute;
+          right: 0;
+          top: 0;
+
+          svg path {
+            stroke-width: 4px;
+          }
+        }
+      }
+
+      .greeting {
+        margin: $layout-unit-md 0 0;
+      }
+    }
+
+    .user-icon {
+      display: inline-block;
+
+      md-icon {
+        background-color: $border-dark__color;
+        border-radius: 50%;
+        font-size: 40px;
+        height: $_user-icon-size;
+        line-height: $_user-icon-size;
+        text-align: center;
+        width: $_user-icon-size;
+      }
+    }
+
+    .additional-login-actions {
+      margin: 0 0 $layout-unit-lg;
+      text-align: center;
+
+      .actions-title {
+        margin: $layout-unit 0 $layout-unit-md;
+
+        .login-actions {
+
+          button {
+
+          }
+        }
+      }
+    }
+
+    md-input-container {
+
+      .md-errors-spacer {
+        display: none;
+      }
+    }
+
+    md-tabs {
+
+      md-tabs-wrapper {
+        display: none !important;
+      }
+    }
+  }
+}
+
+.dark-mode-active {
+
+  .login-container {
+
+    > md-card.login-card {
+
+      .user-icon {
+
+        md-icon {
+          background-color: $border-light__color;
+        }
+      }
+    }
+  }
+}
+
+@media(min-width: $screen_md) {
+
+  .login-container {
+
+    > md-card.login-card {
+      width: 400px;
+    }
+  }
+}

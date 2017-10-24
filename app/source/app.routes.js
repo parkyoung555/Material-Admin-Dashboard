@@ -33,6 +33,11 @@
             controller: 'sideNavComponent',
             controllerAs: 'sideNavVm'
           }
+        },
+        resolve: {
+          currentAuth: ['authService', function(authService) {
+            return authService.requireSignIn();
+          }]
         }
       });
 

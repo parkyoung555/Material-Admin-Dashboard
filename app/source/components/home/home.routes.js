@@ -31,7 +31,7 @@
             }
           ]
         }
-      })
+      });
   }
   routeConfig.$inject = ['$stateProvider'];
 })();

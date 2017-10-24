@@ -19,7 +19,7 @@
           pageTitle: 'Settings',
           excludeFromNavigation: true
         }
-      })
+      });
   }
   routeConfig.$inject = ['$stateProvider'];
 })();
