@@ -1,22 +1,65 @@
 <md-card class="widget weather">
   <md-card-title flex="none">
     <md-card-title-text layout="row">
-      <span class="md-headline" flex>Weather @ {{weatherVm.city.name}}, {{weatherVm.city.country}}</span>
+      <span class="md-headline" flex>{{weatherVm.weather.location.city}}, {{weatherVm.weather.location.region}}</span>
     </md-card-title-text>
   </md-card-title>
-  <div class="wrapper" flex>
-    <div ng-repeat="weather in weatherVm.weather track by $index" class="weather-container">
-      <img ng-src="{{weatherVm.getIconUrl(weather.weather[0])}}" alt="{{weather.weather[0].descriptions}}">
-      <div class="weather-info">
-        <span class="time">{{weatherVm.getDate(weather)}}</span>
-        <span class="small-text">min {{weather.temp.min}}</span>
-        <span class="small-text">max {{weather.temp.max}}</span>
+  <md-card-content ng-if="weatherVm.forecast.length > 0">
+    <p>
+      {{weatherVm.weather.item.condition.date}}
+      <br>
+      {{weatherVm.weather.item.condition.text}}
+    </p>
+    <div flex layout="row" class="jumbo">
+      <div flex="50" layout="row">
+        <img
+          ng-src="{{weatherVm.getIconUrl(weatherVm.weather.item.condition.code)}}"
+          alt="">
+        <h3>
+          <span class="temperature">{{weatherVm.weather.item.condition.temp}}</span>&deg;
+          {{weatherVm.weather.units.temperature}}
+        </h3>
+      </div>
+      <div flex="50" layout="column" class="condition">
+        <span>
+          <span class="label">Humidity:</span>
+          {{weatherVm.weather.atmosphere.humidity}}%
+        </span>
+        <span>
+          <span class="label">Wind:</span>
+          {{weatherVm.weather.wind.speed}}&nbsp;
+          {{weatherVm.weather.units.speed}}&nbsp;
+          {{weatherVm.weather.wind.direction}}&deg;
+        </span>
+        <span>
+          <span class="label">Sunrise:</span>
+          {{weatherVm.weather.astronomy.sunrise}}
+        </span>
+        <span>
+          <span class="label">Sunset:</span>
+          {{weatherVm.weather.astronomy.sunset}}
+        </span>
       </div>
     </div>
-    <div class="empty-message" ng-if="weatherVm.weather.length === 0" layout="column" layout-align="center center" flex>
-      <div class="layout-padding">
-        <div class="md-body-2 message-text">No weather data.</div>
+    <div class="forecast" flex layout="column" layout-gt-xs="row">
+      <div layout="row" flex flex-gt-xs="16" layout-gt-xs="column" ng-repeat="forecast in weatherVm.forecast track by $index">
+        <div flex="20" flex-gt-xs="100" layout="column">
+          <h4>{{forecast.day}}</h4>
+          <img
+            ng-src="{{weatherVm.getIconUrl(forecast.code)}}"
+            alt="">
+        </div>
+        <div flex layout="column">
+          <span class="high">
+            <span class="label">High:</span>
+            {{forecast.high}}
+          </span>
+          <span class="low">
+            <span class="label">Low:</span>
+            {{forecast.low}}
+          </span>
+        </div>
       </div>
     </div>
-  </div>
+  </md-card-content>
 </md-card>
