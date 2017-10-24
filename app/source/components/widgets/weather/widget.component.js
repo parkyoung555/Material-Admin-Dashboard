@@ -17,8 +17,7 @@
 
     weatherWidgetService.getWeatherData(vm.locationText).then(function(res) {
       vm.weather = res.data.query.results.channel;
-      vm.forecast = vm.weather.item.forecast;
-      console.log(vm.forecast);
+      vm.forecast = vm.weather.item.forecast.slice(1, 7);
     });
 
     function getIconClass (weatherCode) {
@@ -31,7 +30,7 @@
         case 34: // fair (day)
         case 36: // hot
         case 3200: // not available
-          return 'clear-day';
+          return 'clear';
         case 0: // tornado
         case 1: // tropical storm
         case 2: // hurricane
@@ -52,7 +51,7 @@
         case 39: // scattered thunderstorms (not a typo)
         case 45: // thundershowers
         case 47: // isolated thundershowers
-          return 'thunderstorms';
+          return 'thunderstorm';
         case 5: // mixed rain and snow
         case 7: // mixed snow and sleet
         case 13: // snow flurries
@@ -72,7 +71,7 @@
           return 'fog';
         case 24: // windy
         case 23: // blustery
-          return 'windy';
+          return 'wind';
         case 26: // cloudy
         case 27: // mostly cloudy (night)
         case 28: // mostly cloudy (day)
@@ -81,7 +80,7 @@
         case 29: // partly cloudy (night)
         case 30: // partly cloudy (day)
         case 44: // partly cloudy
-          return 'partly-cloudy-day';
+          return 'partly-cloudy';
       }
     };
 

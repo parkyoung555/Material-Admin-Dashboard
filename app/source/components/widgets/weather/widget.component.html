@@ -16,7 +16,7 @@
           ng-src="{{weatherVm.getIconUrl(weatherVm.weather.item.condition.code)}}"
           alt="">
         <h3>
-          {{weatherVm.weather.item.condition.temp}}&deg;
+          <span class="temperature">{{weatherVm.weather.item.condition.temp}}</span>&deg;
           {{weatherVm.weather.units.temperature}}
         </h3>
       </div>
@@ -41,14 +41,25 @@
         </span>
       </div>
     </div>
-    <div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+    <div class="forecast" flex layout="column" layout-gt-xs="row">
+      <div layout="row" flex flex-gt-xs="16" layout-gt-xs="column" ng-repeat="forecast in weatherVm.forecast track by $index">
+        <div flex="20" flex-gt-xs="100" layout="column">
+          <h4>{{forecast.day}}</h4>
+          <img
+            ng-src="{{weatherVm.getIconUrl(forecast.code)}}"
+            alt="">
+        </div>
+        <div flex layout="column">
+          <span class="high">
+            <span class="label">High:</span>
+            {{forecast.high}}
+          </span>
+          <span class="low">
+            <span class="label">Low:</span>
+            {{forecast.low}}
+          </span>
+        </div>
+      </div>
     </div>
   </md-card-content>
 </md-card>
