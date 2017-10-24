@@ -14,6 +14,7 @@
 
     vm.getIconClass = getIconClass;
     vm.getIconUrl = getIconUrl;
+    vm.getTimestamp = getTimestamp;
 
     weatherWidgetService.getWeatherData(vm.locationText).then(function(res) {
       vm.weather = res.data.query.results.channel;
@@ -51,7 +52,7 @@
         case 39: // scattered thunderstorms (not a typo)
         case 45: // thundershowers
         case 47: // isolated thundershowers
-          return 'thunderstorm';
+          return 'storm';
         case 5: // mixed rain and snow
         case 7: // mixed snow and sleet
         case 13: // snow flurries
@@ -76,7 +77,7 @@
         case 27: // mostly cloudy (night)
         case 28: // mostly cloudy (day)
         case 31: // clear (night)
-          return 'cloudy';
+          return 'clouds';
         case 29: // partly cloudy (night)
         case 30: // partly cloudy (day)
         case 44: // partly cloudy
@@ -86,9 +87,13 @@
 
     function getIconUrl(code) {
       var file = getIconClass(code);
-      return '/images/weather/'+file+'.png';
+      return '/images/md-weather-iconset/weather-'+file+'.png';
     }
 
+    function getTimestamp(dateStr) {
+      var d = new Date(dateStr);
+      return d.getTime();
+    }
   }
     weatherComponent.$inject = ['$scope', 'themeService', 'weatherWidgetService'];
 })();
