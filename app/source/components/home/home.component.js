@@ -4,13 +4,13 @@
   angular.module('homeComponent')
     .controller('homeComponent', homeComponent);
 
-  function homeComponent(widgetsUtilityService, $scope, $rootScope, $timeout, profileService) {
+  function homeComponent(widgetsUtilityService, $scope, $rootScope, $timeout, userService) {
     var vm = this;
 
-    vm.fluidGridOptions = profileService.fluidGridOptions;
-    vm.activeWidgets = profileService.activeWidgets;
+    vm.fluidGridOptions = userService.fluidGridOptions;
+    vm.activeWidgets = userService.activeWidgets;
     vm.reorgModeActive = false;
-    vm.removeWidget = profileService.removeWidget;
+    vm.removeWidget = userService.removeWidget;
 
     $scope.$on('isCompact', function(ev, data) {
       $timeout(function(){
@@ -25,12 +25,12 @@
     ////////////////////////////////
 
     function toggleReorgMode() {
-      profileService.fluidGridOptions.draggable.enabled = !profileService.fluidGridOptions.draggable.enabled;
-      profileService.fluidGridOptions.resizable.enabled = !profileService.fluidGridOptions.resizable.enabled;
+      userService.fluidGridOptions.draggable.enabled = !userService.fluidGridOptions.draggable.enabled;
+      userService.fluidGridOptions.resizable.enabled = !userService.fluidGridOptions.resizable.enabled;
 
-      vm.reorgModeActive = profileService.fluidGridOptions.draggable.enabled || profileService.fluidGridOptions.resizable.enabled;
+      vm.reorgModeActive = userService.fluidGridOptions.draggable.enabled || userService.fluidGridOptions.resizable.enabled;
       return vm.reorgModeActive;
     }
   }
-  homeComponent.$inject = ['widgetsUtilityService', '$scope', '$rootScope', '$timeout', 'profileService'];
+  homeComponent.$inject = ['widgetsUtilityService', '$scope', '$rootScope', '$timeout', 'userService'];
 })();

@@ -1,11 +1,11 @@
 <md-sidenav class="side-navigation" md-component-id="side-nav-left" md-is-locked-open="$mdMedia('gt-md')" ng-class="{'compact': sideNavVm.isCompact}">
   <md-menu md-position-mode="target-right target">
     <div class="nav-header" ng-click="sideNavVm.openUserMenu($mdMenu, $event)">
-      <img class="profile-icon" src="/images/cat.jpg" />
+      <img class="profile-icon" ng-src="{{sideNavVm.profileImage}}" />
       <div class="nav-toolbar md-body-2" layout="row" md-menu-origin>
         <div class="user-details" flex>
-          <div class="name">Young Park</div>
-          <div class="title md-body-1">Senior UX/UI Designer</div>
+          <div class="name">{{sideNavVm.fullName}}</div>
+          <div class="title md-body-1">{{sideNavVm.title}}</div>
         </div>
         <md-icon>arrow_drop_down</md-icon>
       </div>
@@ -32,7 +32,13 @@
     </md-menu-content>
   </md-menu>
   <div class="md-nav-links">
-    <md-button ui-sref="{{menuItem.state}}" ng-repeat="menuItem in sideNavVm.menuItems track by $index"
+    <div class="nav-search" layout="row">
+      <md-icon>search</md-icon>
+      <input class="md-body-1" ng-model="sideNavVm.navSearch" placeholder="Search" />
+    </div>
+    <div ng-if="filteredNavItems.length == 0" class="md-body-1 no-nav-search">Nothing looks like {{sideNavVm.navSearch}}.</div>
+    <md-button ui-sref="{{menuItem.state}}"
+               ng-repeat="menuItem in (filteredNavItems = (sideNavVm.menuItems | filter: sideNavVm.navSearch))""
                md-colors="{{sideNavVm.mdColorsAttrValue($state.current.name == menuItem.state, 'color', ( menuItem.activeColor || ( sideNavVm.currentTheme + '-accent' ) ))}}">
       <md-icon aria-label="{{menuItem.label}}"
                md-colors="{{sideNavVm.mdColorsAttrValue($state.current.name == menuItem.state, 'color', ( menuItem.activeColor || ( sideNavVm.currentTheme + '-accent' ) ))}}">{{menuItem.icon}}</md-icon>

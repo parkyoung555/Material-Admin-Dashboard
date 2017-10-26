@@ -4,7 +4,7 @@
   angular.module('dashboardApp')
     .run(appRun);
 
-  function appRun($rootScope, $state, $transitions, widgetsUtilityService, navigationService, profileService) {
+  function appRun($rootScope, $state, $transitions, widgetsUtilityService, navigationService, userService) {
     $rootScope.$state = $state;
     $transitions.onFinish({}, function(){
       widgetsUtilityService.reflowHighcharts();
@@ -13,8 +13,8 @@
       navigationService.setPageActions();
     });
     $transitions.onExit({}, function(){
-      profileService.fluidGridOptions.draggable.enabled = false;
-      profileService.fluidGridOptions.resizable.enabled = false;
+      userService.fluidGridOptions.draggable.enabled = false;
+      userService.fluidGridOptions.resizable.enabled = false;
     });
     $transitions.onError({}, function(t){
       if (t._error.detail === "AUTH_REQUIRED") {
@@ -22,5 +22,5 @@
       }
     });
   }
-  appRun.$inject = ['$rootScope', '$state', '$transitions', 'widgetsUtilityService', 'navigationService', 'profileService'];
+  appRun.$inject = ['$rootScope', '$state', '$transitions', 'widgetsUtilityService', 'navigationService', 'userService'];
 })();

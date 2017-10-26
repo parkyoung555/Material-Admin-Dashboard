@@ -20,6 +20,30 @@ md-sidenav.side-navigation {
   border-right: 1px solid $border-dark__color;
   height: 100%;
 
+  .nav-search {
+    border-color: $border-dark__color;
+    border-style: solid;
+    border-width: 1px 0;
+    padding: 0 $layout-unit-md;
+
+    md-icon {
+      margin-right: $layout-unit;
+    }
+
+    input {
+      background-color: transparent;
+      border: none;
+      line-height: 40px;
+      outline: none;
+      width: 100%;
+    }
+  }
+
+  .no-nav-search {
+    padding: $layout-unit-md;
+    text-align: center;
+  }
+
   .nav-header {
     background-color: rgba(0,0,0,.12);
     display: inline-block;
@@ -70,8 +94,16 @@ md-sidenav.side-navigation {
 
   &.compact {
 
+    .nav-search {
+      display: none;
+    }
+
     &:not(.md-closed):not(.md-locked-open) {
       box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
+
+      .nav-search {
+        display: block;
+      }
     }
 
     &.md-closed,
@@ -103,6 +135,13 @@ md-sidenav.side-navigation {
 .dark-mode-active {
 
   md-sidenav.side-navigation {
+
+    .nav-search {
+
+      input {
+        color: $light-primary__color;
+      }
+    }
 
     .nav-header {
       background-color: rgba(0, 0, 0, .12) !important;

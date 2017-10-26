@@ -1,17 +1,27 @@
 <div class="login-container" layout="column" layout-align="center center" flex>
   <md-card class="login-card">
-    <div class="login-fixed-header" layout-align="center center">
-      <div class="user-icon">
-        <md-icon>person</md-icon>
-        <md-progress-circular md-mode="indeterminate" class="md-accent" md-diameter="74" ng-if="loginVm.loading" ng-disabled="!loginVm.loading"></md-progress-circular>
-      </div>
-      <div class="greeting md-headline">Sign in</div>
-    </div>
-    <md-tabs md-selected="loginVm.loginFormIndex" md-dynamic-height md-no-ink-bar>
-      <md-tab label="Email" aria-label="Email">
-        <form name="loginFormEmail" ng-submit="loginVm.goToTab(1)" aria-label="Login form email">
+    <md-card-header class="login-fixed-header" flex="noshrink">
+      <md-card-avatar class="user-icon" ng-if="loginVm.loginFormCurrentPage.index !== loginVm.pages.signInOptions.index">
+        <md-icon class="md-avatar-icon" ng-if="!loginVm.profileImage">person</md-icon>
+        <img ng-if="loginVm.profileImage" ng-src="{{loginVm.profileImage}}"/>
+        <md-progress-circular md-mode="indeterminate" class="md-accent" ng-if="loginVm.loading"></md-progress-circular>
+      </md-card-avatar>
+      <md-card-header-text class="title-text" layout="row" layout-align="start center">
+        <div flex>
+          <div class="md-headline">{{loginVm.loginFormCurrentPage.header}}</div>
+          <div class="md-body-1 greeting" ng-if="loginVm.loginFormCurrentPage.subHeader">{{loginVm.loginFormCurrentPage.subHeader}}</div>
+        </div>
+        <md-button ng-if="loginVm.loginUserHistory && loginVm.loginFormCurrentPage.index !== loginVm.pages.signInOptions.index"
+                   class="md-icon-button" aria-label="Choose account" ng-click="loginVm.chooseAccount()">
+          <md-icon>keyboard_arrow_down</md-icon>
+        </md-button>
+      </md-card-header-text>
+    </md-card-header>
+    <md-tabs md-selected="loginVm.loginFormCurrentPage.index" md-dynamic-height md-no-ink-bar>
+      <md-tab label="Email" aria-label="Email" ng-disabled="!loginVm.pages.email.isActive">
+        <form name="loginFormEmail" ng-submit="loginVm.findUser()" aria-label="Login form email">
           <md-card-content>
-            <md-input-container class="md-block" md-is-error="loginVm.emailInvalid">
+            <md-input-container class="md-block hide-error-spacer" md-is-error="loginVm.emailInvalid">
               <label>Email</label>
               <input ng-model="loginVm.email" name="email" ng-pattern="/^.+@.+\..+$/" focus-on="loginVm.emailFocus" required/>
             </md-input-container>
@@ -27,18 +37,22 @@
                   <md-icon md-svg-icon="google-plus"></md-icon>
                   <md-tooltip>Google+</md-tooltip>
                 </md-button>
+                <md-button class="md-icon-button" ng-click="loginVm.signInWithGithub()" aria-label="Github">
+                  <md-icon md-svg-icon="github-face"></md-icon>
+                  <md-tooltip>Github</md-tooltip>
+                </md-button>
               </div>
             </div>
           </md-card-content>
           <md-card-actions layout="row" layout-align="end center">
-            <md-button ng-click="loginVm.goToTab(1)" class="md-accent md-raised" ng-disabled="loginFormEmail.$invalid">Next</md-button>
+            <md-button type="submit" class="md-accent md-raised" ng-disabled="loginFormEmail.$invalid">Next</md-button>
           </md-card-actions>
         </form>
       </md-tab>
-      <md-tab label="Password" aria-label="Password">
+      <md-tab label="Password" aria-label="Password" ng-disabled="!loginVm.pages.password.isActive">
         <form name="loginFormPassword" ng-submit="loginVm.signInWithEmailAndPassword(loginVm.email, loginVm.password)" aria-label="Login form password">
           <md-card-content>
-            <md-input-container class="md-block" md-is-error="loginVm.passwordInvalid">
+            <md-input-container class="md-block hide-error-spacer" md-is-error="loginVm.passwordInvalid">
               <label>Password</label>
               <input ng-model="loginVm.password" name="email" type="password" md-autofocus focus-on="loginVm.passwordFocus" required/>
             </md-input-container>
@@ -47,11 +61,59 @@
             </div>
           </md-card-content>
           <md-card-actions layout="row" layout-align="end center">
-            <md-button ng-click="loginVm.goToTab(0)" class="md-accent">Back</md-button>
-            <span flex></span>
-            <md-button ng-click="loginVm.signInWithEmailAndPassword(loginVm.email, loginVm.password)" class="md-accent md-raised" ng-disabled="loginFormPassword.$invalid">Sign in</md-button>
+            <md-button type="submit" class="md-accent md-raised" ng-disabled="loginFormPassword.$invalid">Sign in</md-button>
           </md-card-actions>
         </form>
+      </md-tab>
+      <md-tab label="New account" aria-label="New account" ng-disabled="!loginVm.pages.newUser.isActive">
+        <form name="newUserForm" aria-label="New user form" ng-submit="loginVm.createAccount()">
+          <md-card-content>
+            <div layout="row">
+              <md-input-container flex>
+                <input placeholder="First name" ng-model="loginVm.newFirstName" name="newFirstName" required />
+              </md-input-container>
+              <md-input-container flex>
+                <input placeholder="Last name" ng-model="loginVm.newLastName" name="newLastName" required />
+              </md-input-container>
+            </div>
+            <md-input-container class="md-block">
+              <label>Email</label>
+              <input ng-model="loginVm.newEmail" name="newEmail" ng-pattern="/^.+@.+\..+$/" focus-on="loginVm.newEmailFocus" required/>
+            </md-input-container>
+            <md-input-container class="md-block">
+              <label>Password</label>
+              <input ng-model="loginVm.newPassword" name="newPassword" type="password" required/>
+            </md-input-container>
+            <md-input-container class="md-block">
+              <label>Confirm password</label>
+              <input ng-model="loginVm.confirmNewPassword" name="newPassword" type="password" required/>
+            </md-input-container>
+          </md-card-content>
+          <md-card-actions layout="row" layout-align="end center">
+            <md-button type="submit" class="md-accent md-raised" ng-disabled="newUserForm.$invalid">Create Account</md-button>
+          </md-card-actions>
+        </form>
+      </md-tab>
+      <md-tab label="Sign in options" aria-label="Sign in options" ng-disabled="!loginVm.pages.signInOptions.isActive">
+        <md-list>
+          <md-list-item class="md-2-line" ng-repeat="user in loginVm.loginUserHistory" ng-click="loginVm.loginWithOldUser(user)">
+            <img ng-if="user.profileImage" ng-src="{{user.profileImage}}" class="md-avatar" />
+            <md-icon ng-if="!user.profileImage" class="md-avatar-icon">person</md-icon>
+            <div class="md-list-item-text">
+              <h3> {{ user.fullName }} </h3>
+              <p> {{ user.email }} </p>
+            </div>
+          </md-list-item>
+          <md-list-item class="md-2-line" ng-click="loginVm.loginWithOldUser()">
+            <md-icon class="md-avatar-icon">person</md-icon>
+            <div class="md-list-item-text">
+              <h3>New user</h3>
+            </div>
+          </md-list-item>
+        </md-list>
+        <md-card-actions layout="row" layout-align="start center">
+          <md-button ng-click="loginVm.goBack()" class="md-accent">Meh.</md-button>
+        </md-card-actions>
       </md-tab>
     </md-tabs>
   </md-card>

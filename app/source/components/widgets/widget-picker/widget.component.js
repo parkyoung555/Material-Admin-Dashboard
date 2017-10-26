@@ -4,7 +4,7 @@
   angular.module('widgetPickerComponent')
     .controller('widgetPickerComponent', widgetPickerComponent);
 
-  function widgetPickerComponent($scope, themeService, widgetPickerService, $mdDialog, $mdToast, profileService) {
+  function widgetPickerComponent($scope, themeService, widgetPickerService, $mdDialog, $mdToast, userService) {
     var vm = this,
       toast = $mdToast.simple()
         .hideDelay(6000)
@@ -27,7 +27,7 @@
         clickOutsideToClose:true,
         fullscreen: false
       }).then(function(widget) {
-        profileService.addWidget(widget.selectedWidget);
+        userService.addWidget(widget.selectedWidget);
         toast
           .textContent('Widget added.')
           .action('OK');
@@ -36,5 +36,5 @@
       });
     }
   }
-  widgetPickerComponent.$inject = ['$scope', 'themeService', 'widgetPickerService', '$mdDialog', '$mdToast', 'profileService'];
+  widgetPickerComponent.$inject = ['$scope', 'themeService', 'widgetPickerService', '$mdDialog', '$mdToast', 'userService'];
 })();

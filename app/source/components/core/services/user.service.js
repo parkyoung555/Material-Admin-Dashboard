@@ -2,9 +2,11 @@
   'use strict';
 
   angular.module('coreComponent')
-    .service('profileService', profileService);
+    .service('userService', userService);
 
-  function profileService(widgetsUtilityService) {
+  function userService(widgetsUtilityService, $firebaseArray, utilityService) {
+    var db = $firebaseArray(firebase.database().ref()),
+      gravatarUrl = 'https://www.gravatar.com/avatar/';
     this.fluidGridOptions = {
       columns: 8, // the width of the grid, in columns
       pushing: true, // whether to push other items out of the way on move or resize
@@ -81,6 +83,8 @@
 
     this.addWidget = addWidget;
     this.removeWidget = removeWidget;
+    this.getUserInfo = getUserInfo;
+    this.getGravatar = getGravatar;
 
     ///////////////////////////////////
 
@@ -101,6 +105,16 @@
         component: widgetName
       });
     }
+
+    function getUserInfo(email) {
+      return db.$loaded(function(data){
+       return data.$getRecord('users')[SparkMD5.hash(email)];
+      });
+    }
+
+    function getGravatar(email) {
+      return gravatarUrl + SparkMD5.hash(email);
+    }
   }
-  profileService.$inject = ['widgetsUtilityService'];
+  userService.$inject = ['widgetsUtilityService', '$firebaseArray', 'utilityService'];
 })();

@@ -42,9 +42,7 @@
     function setPageActions() {
       var states = $state.current;
 
-      if(states.data &&  states.data.actions) {
-        this.pageActions =  states.data.actions;
-      }
+      this.pageActions = states.data ? states.data.actions : [];
     }
   }
   navigationService.$inject = ['$state'];

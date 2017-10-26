@@ -85,6 +85,14 @@
       }
     };
 
+    $scope.$watchCollection(function(){
+      return [themeService.currentTheme, themeService.themeSuffix];
+    }, function(theme){
+      vm.currentTheme = theme[0] + theme[1];
+    });
+
+    ////////////////////////////////
+
     function getIconUrl(code) {
       var file = getIconClass(code);
       return '/images/md-weather-iconset/weather-'+file+'.png';

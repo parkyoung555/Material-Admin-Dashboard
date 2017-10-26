@@ -6,6 +6,13 @@
   padding: 0.2em 0;
 }
 
+md-input-container.hide-error-spacer {
+
+  .md-errors-spacer {
+    display: none;
+  }
+}
+
 highchart {
   display: inline-block;
   width: 100%;

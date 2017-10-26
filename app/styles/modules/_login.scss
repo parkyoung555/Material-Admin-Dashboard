@@ -7,8 +7,7 @@
     $_user-icon-size: 64px;
 
     .login-fixed-header {
-      padding: $layout-unit-xl $layout-unit-md 0;
-      text-align: center;
+      padding: $layout-unit-lg $layout-unit-md 0;
 
       .user-icon {
         position: relative;
@@ -27,22 +26,43 @@
         }
       }
 
-      .greeting {
-        margin: $layout-unit-md 0 0;
+      .title-text {
+        margin: 0 0 $layout-unit-lg;
+
+        .greeting {
+          //margin: $layout-unit 0 0;
+        }
       }
     }
 
-    .user-icon {
-      display: inline-block;
+    md-tabs,
+    md-tabs-content-wrapper,
+    md-tab-content > div {
+      display: flex;
+    }
 
-      md-icon {
-        background-color: $border-dark__color;
+    md-tabs,
+    md-list {
+      flex: 1;
+    }
+
+    md-tabs-content-wrapper,
+    md-tab-content {
+      width: 100%;
+    }
+
+    md-tab-content > div {
+      flex-direction: column;
+    }
+
+    md-list {
+      overflow-y: auto;
+    }
+
+    .user-icon {
+
+      img {
         border-radius: 50%;
-        font-size: 40px;
-        height: $_user-icon-size;
-        line-height: $_user-icon-size;
-        text-align: center;
-        width: $_user-icon-size;
       }
     }
 
@@ -59,13 +79,6 @@
 
           }
         }
-      }
-    }
-
-    md-input-container {
-
-      .md-errors-spacer {
-        display: none;
       }
     }
 

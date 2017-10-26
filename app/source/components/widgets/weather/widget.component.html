@@ -1,4 +1,4 @@
-<md-card class="widget weather">
+<md-card class="widget weather" md-colors="{backgroundColor: '{{weatherVm.currentTheme}}-accent-500'}">
   <md-card-title flex="none">
     <md-card-title-text layout="column">
       <div class="weather-headline md-headline" flex>{{weatherVm.weather.location.city}}, {{weatherVm.weather.location.region}}</div>
@@ -6,7 +6,7 @@
     </md-card-title-text>
   </md-card-title>
   <md-card-content ng-if="weatherVm.forecast.length > 0" layout="column" flex>
-    <div class="main-weather-stat" layout="row" flex>
+    <div class="main-weather-stat" layout="row">
       <h3 flex>
         <span class="temperature md-display-4">{{weatherVm.weather.item.condition.temp}}</span>
         <span class="unit md-display-3">&deg;{{weatherVm.weather.units.temperature}}</span>
@@ -15,7 +15,7 @@
         ng-src="{{weatherVm.getIconUrl(weatherVm.weather.item.condition.code)}}"
         alt="">
     </div>
-    <div layout="column" flex>
+    <div layout="column" layout-align="end start" flex>
       <!--<div flex="50" layout="column" class="condition">-->
         <div class="weather-stat" layout="row" layout-align="start center">
           <img src="../../../images/md-weather-iconset/weather-rain-day.png" />
