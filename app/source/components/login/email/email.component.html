@@ -1,0 +1,34 @@
+<form name="loginFormEmail" ng-submit="emailVm.goToPassword()" aria-label="Login form email">
+  <md-card-content>
+    <md-input-container class="md-block hide-error-spacer" md-is-error="loginVm.emailInvalid" ng-keyup="loginVm.emailInvalid = false">
+      <label>Email</label>
+      <input ng-model="emailVm.email" name="email" ng-pattern="/^.+@.+\..+$/" focus-on="emailVm.emailFocus" required/>
+      <div ng-messages="loginFormEmail.email.$error">
+        <div ng-message="pattern">
+          Invalid email format.
+        </div>
+      </div>
+    </md-input-container>
+    <div class="additional-login-actions">
+      <div class="actions-title md-caption">Sign in with</div>
+      <div class="login-actions">
+        <md-button class="md-icon-button" ng-click="emailVm.signInWithFacebook()" aria-label="Facebook">
+          <md-icon md-svg-icon="facebook"></md-icon>
+          <md-tooltip>Facebook</md-tooltip>
+        </md-button>
+        <!--<span class="md-caption">- or -</span>-->
+        <md-button class="md-icon-button" ng-click="emailVm.signInWithGoogle()" aria-label="Google plus">
+          <md-icon md-svg-icon="google-plus"></md-icon>
+          <md-tooltip>Google+</md-tooltip>
+        </md-button>
+        <md-button class="md-icon-button" ng-click="emailVm.signInWithGithub()" aria-label="Github">
+          <md-icon md-svg-icon="github-face"></md-icon>
+          <md-tooltip>Github</md-tooltip>
+        </md-button>
+      </div>
+    </div>
+  </md-card-content>
+  <md-card-actions layout="row" layout-align="end center">
+    <md-button type="submit" class="md-accent md-raised" ng-disabled="loginFormEmail.$invalid">Next</md-button>
+  </md-card-actions>
+</form>

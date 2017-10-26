@@ -18,7 +18,7 @@
     });
     $transitions.onError({}, function(t){
       if (t._error.detail === "AUTH_REQUIRED") {
-        $state.go('login');
+        $state.go('login.email');
       }
     });
   }

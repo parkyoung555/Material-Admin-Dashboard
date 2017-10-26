@@ -4,50 +4,16 @@
   angular.module('loginComponent')
     .controller('loginComponent', loginComponent);
 
-  function loginComponent($rootScope, authService, themeService, $scope, $state, userService, utilityService) {
+  function loginComponent(authService, themeService, $scope, $state, loginService) {
     var vm = this,
       key = 'userData';
 
-    vm.loaderValue = 68;
-    vm.emailFocus = true;
-    vm.passwordFocus = false;
     vm.loading = false;
-    vm.email = 'parkyoung555@gmail.com';
-    vm.pages = {
-      email: {
-        isActive: true,
-        index: 0,
-        header: 'Sign in'
-      },
-      password: {
-        isActive: true,
-        index: 1,
-        header: 'Sign in'
-      },
-      newUser: {
-        isActive: true,
-        index: 2,
-        header: 'Sign up',
-        subHeader: 'Join us. We have cookies.'
-      },
-      signInOptions: {
-        isActive: true,
-        index: 3,
-        header: 'Choose an account'
-      }
-    };
-    vm.loginFormCurrentPage = vm.pages.email;
-    vm.lastPage = {};
     vm.loginUserHistory = JSON.parse(localStorage.getItem(key));
 
-    vm.goToTab = goToTab;
-    vm.goBack = goBack;
-    vm.findUser = findUser;
-    vm.signInWithEmailAndPassword = signInWithEmailAndPassword;
     vm.signInWithGoogle = signInWithGoogle;
     vm.signInWithFacebook = signInWithFacebook;
     vm.signInWithGithub = signInWithGithub;
-    vm.createAccount = createAccount;
     vm.chooseAccount = chooseAccount;
     vm.loginWithOldUser = loginWithOldUser;
 
@@ -57,40 +23,30 @@
       vm.currentTheme = theme[0] + theme[1];
     });
 
+    $scope.$on('loginHeaders', function(ev, data){
+      vm.subTitle = data.subTitle;
+      vm.profileImage = data.profileImage;
+    });
+
+    $scope.$on('login', function(ev, data){
+      if(loginService.email && loginService.password) {
+        signInWithEmailAndPassword(loginService.email, loginService.password);
+      }
+    });
+
+    $scope.$on('loginLoader', function(ev, data){
+      vm.loading = data.loading;
+      vm.loaderType = data.progress ? 'determinate' : 'indeterminate';
+      vm.loaderProgress = data.progress
+    });
+
+
     //////////////////////////////
 
-    function goToTab(page) {
-      vm.loading = false;
-      vm.lastPage = vm.loginFormCurrentPage;
-      vm.subHeader = page.subHeader;
-      switch (page.index) {
-        case vm.pages.email.index:
-          vm.emailFocus = true;
-          vm.passwordFocus = false;
-          break;
-        case vm.pages.password.index:
-          vm.emailFocus = false;
-          vm.passwordFocus = true;
-          break;
-        case vm.pages.newUser.index:
-          vm.newEmailFocus = true;
-          break;
-        default:
-          vm.emailFocus = false;
-          vm.passwordFocus = false;
-      }
-      vm.loginFormCurrentPage = page;
-    }
-
-    function goBack() {
-      goToTab(vm.lastPage);
-    }
-
-    function signInWithEmailAndPassword() {
-      if(!vm.email || !vm.password) return false;
+    function signInWithEmailAndPassword(email, password) {
       vm.loading = true;
 
-      authService.auth.$signInWithEmailAndPassword(vm.email, vm.password)
+      authService.auth.$signInWithEmailAndPassword(email, password)
         .then(authSuccess)
         .catch(authFail);
     }
@@ -116,14 +72,14 @@
         .catch(authFail);
     }
 
-    function authSuccess(d) {console.log(d);
+    function authSuccess(d) {
       // TODO: Make this better. Too lazy right now
       var currentData = localStorage.getItem(key),
         payload = currentData ? JSON.parse(currentData) : {};
-      payload[utilityService.b64EncodeUnicode(vm.email)] = {
-        email: vm.email,
-        fullName: vm.firstName ? vm.firstName + ' ' + vm.lastName: d.displayName,
-        profileImage: vm.profileImage
+      payload[SparkMD5.hash(d.email)] = {
+        email: d.email,
+        fullName: d.displayName,
+        photoURL: d.profileImage
       };
       localStorage.setItem(key, JSON.stringify(payload));
 
@@ -135,37 +91,11 @@
       vm.loading = false;
       if(error.code === 'auth/user-not-found') {
         vm.emailInvalid = true;
-        goToTab(vm.pages.email);
+        $state.go('login.email');
       } else if(error.code === 'auth/wrong-password') {
         vm.passwordInvalid = true;
-        goToTab(vm.pages.password);
+        $state.go('login.password');
       }
-    }
-
-    function findUser() {
-      if (!vm.email) {
-        return;
-      }
-      vm.loading = true;
-      userService.getUserInfo(vm.email)
-        .then(function(data){
-          vm.pages.password.subHeader = 'Hello, ' + data.firstName;
-          vm.profileImage = userService.getGravatar(vm.email);
-          vm.goToTab(vm.pages.password);
-        })
-        .catch(function(error){
-          vm.name = void(0);
-          vm.profileImage = void(0);
-          goToTab(vm.pages.newUser);
-        });
-    }
-
-    function createAccount() {
-      if(!vm.newEmail || !vm.newPassword || !vm.confirmNewPassword) {
-        return;
-      }
-      vm.email = vm.newEmail;
-      goToTab(vm.pages.password);
     }
 
     function chooseAccount() {
@@ -186,5 +116,5 @@
       }
     }
   }
-  loginComponent.$inject = ['$rootScope', 'authService', 'themeService', '$scope', '$state', 'userService', 'utilityService'];
+  loginComponent.$inject = ['authService', 'themeService', '$scope', '$state', 'loginService'];
 })();

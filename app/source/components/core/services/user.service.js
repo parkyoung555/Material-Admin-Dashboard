@@ -5,8 +5,9 @@
     .service('userService', userService);
 
   function userService(widgetsUtilityService, $firebaseArray, utilityService) {
-    var db = $firebaseArray(firebase.database().ref()),
+    var db = $firebaseArray(firebase.database().ref('/users')),
       gravatarUrl = 'https://www.gravatar.com/avatar/';
+
     this.fluidGridOptions = {
       columns: 8, // the width of the grid, in columns
       pushing: true, // whether to push other items out of the way on move or resize
@@ -84,6 +85,7 @@
     this.addWidget = addWidget;
     this.removeWidget = removeWidget;
     this.getUserInfo = getUserInfo;
+    this.setUserInfo = setUserInfo;
     this.getGravatar = getGravatar;
 
     ///////////////////////////////////
@@ -108,8 +110,13 @@
 
     function getUserInfo(email) {
       return db.$loaded(function(data){
-       return data.$getRecord('users')[SparkMD5.hash(email)];
+       return data.$getRecord(SparkMD5.hash(email));
       });
+    }
+
+    function setUserInfo(email, info) {
+      var key = SparkMD5.hash(email);
+      return db.$ref().child(key).set(info);
     }
 
     function getGravatar(email) {

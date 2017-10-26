@@ -34,7 +34,7 @@
 
     function signOut() {
       authService.signOut();
-      $state.go('login');
+      $state.go('login.email');
     }
 
     function getUserInfo() {

@@ -1,0 +1,66 @@
+<md-tabs class="dots" md-dynamic-height md-stretch-tabs="never" md-no-ink-bar md-center-tabs>
+  <md-tab aria-label="About you"
+          md-on-select="signUpVm.currentStep = 0"
+          md-active="signUpVm.currentStep === 0">
+    <md-tab-label>
+      <div md-colors="{backgroundColor: '{{signUpVm.currentTheme}}-accent-500'}"></div>
+    </md-tab-label>
+    <md-tab-body>
+      <form name="signUpAboutForm" ng-submit="signUpVm.nextStep()">
+        <md-card-content>
+          <md-input-container class="md-block">
+            <input placeholder="First name" ng-model="signUpVm.newFirstName" name="newFirstName" required />
+          </md-input-container>
+          <md-input-container class="md-block">
+            <input placeholder="Last name" ng-model="signUpVm.newLastName" name="newLastName" required />
+          </md-input-container>
+          <md-input-container class="md-block">
+            <input placeholder="What you do" ng-model="signUpVm.title" name="title" required />
+          </md-input-container>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button type="submit" class="md-accent md-raised" ng-disabled="signUpAboutForm.$invalid">Next</md-button>
+        </md-card-actions>
+      </form>
+    </md-tab-body>
+  </md-tab>
+  <md-tab aria-label="Password"
+          ng-disabled="(signUpAboutForm.$invalid || signUpPasswordForm.$pristine) && signUpVm.currentStep === 0"
+          md-on-select="signUpVm.currentStep = 1"
+          md-active="signUpVm.currentStep === 1">
+    <md-tab-label>
+      <div md-colors="{backgroundColor: '{{signUpVm.currentTheme}}-accent-500'}"></div>
+    </md-tab-label>
+    <md-tab-body>
+      <form name="signUpPasswordForm" ng-submit="signUpVm.createAccount()">
+        <md-card-content>
+          <md-input-container class="md-block">
+            <label>Email</label>
+            <input ng-model="signUpVm.newEmail" name="newEmail" ng-pattern="/^.+@.+\..+$/" ng-keyup="signUpVm.resetValidity()" focus-on="signUpVm.newEmailFocus" required/>
+            <div ng-messages="signUpPasswordForm.newEmail.$error">
+              <div ng-message="pattern">
+                Invalid email format.
+              </div>
+            </div>
+          </md-input-container>
+          <md-input-container class="md-block">
+            <label>Password</label>
+            <input ng-model="signUpVm.newPassword" name="newPassword" type="password" ng-keyup="signUpVm.resetValidity()" focus-on="signUpVm.newPasswordFocus" required/>
+          </md-input-container>
+          <md-input-container class="md-block">
+            <label>Confirm password</label>
+            <input ng-model="signUpVm.confirmNewPassword" name="confirmNewPassword" type="password" ng-keyup="signUpVm.resetValidity()" required/>
+            <div ng-messages="signUpPasswordForm.confirmNewPassword.$error">
+              <div ng-message="passwordMismatch">Your passwords don't match.</div>
+            </div>
+          </md-input-container>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button ng-click="signUpVm.currentStep = 0" class="md-accent">Back</md-button>
+          <span flex></span>
+          <md-button type="submit" class="md-accent md-raised" ng-disabled="signUpAboutForm.$invalid || signUpPasswordForm.$invalid">Create Account</md-button>
+        </md-card-actions>
+      </form>
+    </md-tab-body>
+  </md-tab>
+</md-tabs>

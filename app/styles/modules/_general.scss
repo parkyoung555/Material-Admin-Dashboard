@@ -6,6 +6,139 @@
   padding: 0.2em 0;
 }
 
+//md-tabs.stepper {
+//
+//  md-tabs-wrapper {
+//
+//    md-tabs-canvas {
+//      height: 72px;
+//
+//      md-pagination-wrapper {
+//        height: 72px;
+//
+//        md-tab-item {
+//          padding: $layout-unit 0;
+//
+//          > * {
+//            text-transform: none;
+//          }
+//
+//          > h4 {
+//            color: $dark-primary__color;
+//            margin: $layout-unit 0 0 0;
+//          }
+//
+//          .step-wrapper {
+//            position: relative;
+//
+//            > span {
+//              border-radius: 50%;
+//
+//              display: inline-block;
+//              font-size: 12px;
+//              height: 24px;
+//              line-height: 24px;
+//              text-align: center;
+//              width: 24px;
+//
+//              &::before,
+//              &::after {
+//                background-color: $border-dark__color;
+//                bottom: 0;
+//                content: '';
+//                height: 1px;
+//                margin: auto;
+//                position: absolute;
+//                top: 0;
+//                $_stepper-border-offset: (24px + $layout-unit-md) / 2;
+//                width: calc(50% - #{$_stepper-border-offset});
+//              }
+//
+//              &::before {
+//                left: 0;
+//              }
+//
+//              &::after {
+//                right: 0;
+//              }
+//            }
+//          }
+//
+//          &.md-disabled {
+//
+//            .step-wrapper > span {
+//              background-color: $dark-disabled__color !important;
+//            }
+//
+//            > h4 {
+//              font-weight: 400;
+//            }
+//          }
+//
+//          &:first-of-type {
+//
+//            .step-wrapper > span::before {
+//              display: none;
+//            }
+//          }
+//
+//          &:last-of-type {
+//
+//            .step-wrapper > span::after {
+//              display: none;
+//            }
+//          }
+//        }
+//      }
+//    }
+//  }
+//}
+
+md-tabs.dots {
+  
+  md-tabs-wrapper {
+    
+    md-tabs-canvas {
+      height: 16px;
+      
+      md-pagination-wrapper {
+        height: 16px;
+        
+        md-tab-item {
+          border-radius: 50%;
+          color: $light-primary__color;
+          display: inline-block;
+          font-size: 0;
+          height: 8px;
+          margin: $layout-unit-sm;
+          overflow: hidden;
+          padding: 0 0;
+          position: relative;
+          text-align: center;
+          width: 8px;
+          z-index: 1;
+          
+          > div {
+            width: 100%;
+            height: 100%;
+          }
+          
+          &.md-disabled {
+            
+            > div {
+              background-color: $dark-disabled__color !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.dark-mode-active {
+  color: $light-primary__color;
+}
+
 md-input-container.hide-error-spacer {
 
   .md-errors-spacer {
@@ -20,10 +153,6 @@ highchart {
 
 .capitalize {
   text-transform: capitalize;
-}
-
-.dark-mode-active {
-  color: $light-primary__color;
 }
 
 .page-wrapper {

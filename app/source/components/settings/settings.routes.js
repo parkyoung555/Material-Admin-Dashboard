@@ -16,8 +16,7 @@
           }
         },
         data: {
-          pageTitle: 'Settings',
-          excludeFromNavigation: true
+          pageTitle: 'Settings'
         }
       });
   }
