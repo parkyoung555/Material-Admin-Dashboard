@@ -4,7 +4,7 @@
   angular.module('loginComponent')
     .controller('passwordComponent', passwordComponent);
 
-  function passwordComponent($rootScope, $scope, themeService, loginService) {
+  function passwordComponent($rootScope, $scope, themeService, loginService, userService) {
     var vm = this;
 
     vm.passwordFocus = true;
@@ -17,6 +17,11 @@
       vm.currentTheme = theme[0] + theme[1];
     });
 
+    $rootScope.$broadcast('loginHeaders', {
+      subTitle: 'Hello, ' + loginService.firstName,
+      profileImage: userService.getGravatar(loginService.email)
+    });
+
     /////////////////////////////////////////
 
     function signIn() {
@@ -27,5 +32,5 @@
       $rootScope.$broadcast('login', true);
     }
   }
-  passwordComponent.$inject = ['$rootScope', '$scope', 'themeService', 'loginService'];
+  passwordComponent.$inject = ['$rootScope', '$scope', 'themeService', 'loginService', 'userService'];
 })();

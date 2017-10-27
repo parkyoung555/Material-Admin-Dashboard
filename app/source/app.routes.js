@@ -13,7 +13,7 @@
     .module('dashboardApp')
     .config(routeConfig);
 
-  function routeConfig($urlRouterProvider, $stateProvider) {
+  function routeConfig($urlRouterProvider, $stateProvider, $locationProvider) {
     $stateProvider
       .state('root', {
         views: {
@@ -42,6 +42,7 @@
       });
 
     $urlRouterProvider.otherwise('/');
+    // $locationProvider.html5Mode(true);
   }
-  routeConfig.$inject = ['$urlRouterProvider', '$stateProvider'];
+  routeConfig.$inject = ['$urlRouterProvider', '$stateProvider', '$locationProvider'];
 })();

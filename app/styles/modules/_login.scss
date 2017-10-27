@@ -2,12 +2,41 @@
 .login-container {
   height: 100%;
   padding: $layout_unit;
+  
+  .background-pattern {
+    height: 100%;
+    left: 0;
+    opacity: .38;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+    
+    svg {
+      height: 100%;
+      width: 100%;
+    }
+  }
 
   > md-card.login-card {
     $_user-icon-size: 64px;
+    z-index: 1;
+    
+    .view-wrapper {
+      display: table;
+      overflow-x: hidden;
+      position: relative;
+      white-space: nowrap;
+      min-width: 100%;
+      
+      > * {
+        //display: table-cell;
+        min-width: 100%;
+      }
+    }
 
     .login-fixed-header {
-      padding: $layout-unit-lg $layout-unit-md 0;
+      padding: $layout-unit-lg $layout-unit-md $layout-unit-md;
 
       .user-icon {
         position: relative;
@@ -27,7 +56,6 @@
       }
 
       .title-text {
-        margin: 0 0 $layout-unit-lg;
 
         .greeting {
           //margin: $layout-unit 0 0;

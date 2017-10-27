@@ -9,7 +9,7 @@
       <form name="signUpAboutForm" ng-submit="signUpVm.nextStep()">
         <md-card-content>
           <md-input-container class="md-block">
-            <input placeholder="First name" ng-model="signUpVm.newFirstName" name="newFirstName" required />
+            <input placeholder="First name" ng-model="signUpVm.newFirstName" name="newFirstName" focus-on="signUpVm.newFirstNameFocus" required />
           </md-input-container>
           <md-input-container class="md-block">
             <input placeholder="Last name" ng-model="signUpVm.newLastName" name="newLastName" required />

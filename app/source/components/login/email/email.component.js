@@ -9,6 +9,7 @@
     var vm = this;
 
     vm.email = loginService.email;
+    vm.emailFocus = true;
 
     vm.goToPassword = goToPassword;
     vm.checkIfUserExists = checkIfUserExists;
@@ -35,11 +36,8 @@
       vm.loading = true;
       return userService.getUserInfo(vm.email)
         .then(function(data){
-          $rootScope.$broadcast('loginHeaders', {
-            subTitle: 'Hello, ' + data.firstName,
-            profileImage: userService.getGravatar(vm.email)
-          });
-
+          loginService.firstName = data.firstName;
+          loginService.lastName = data.lastName;
           loginService.email = vm.email;
           $state.go('login.password');
         })

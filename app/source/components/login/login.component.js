@@ -5,17 +5,14 @@
     .controller('loginComponent', loginComponent);
 
   function loginComponent(authService, themeService, $scope, $state, loginService) {
-    var vm = this,
-      key = 'userData';
+    var vm = this;
 
     vm.loading = false;
-    vm.loginUserHistory = JSON.parse(localStorage.getItem(key));
+    vm.loginHistoryExists = !!loginService.getLoginHistory();
 
     vm.signInWithGoogle = signInWithGoogle;
     vm.signInWithFacebook = signInWithFacebook;
     vm.signInWithGithub = signInWithGithub;
-    vm.chooseAccount = chooseAccount;
-    vm.loginWithOldUser = loginWithOldUser;
 
     $scope.$watchCollection(function(){
       return [themeService.currentTheme, themeService.themeSuffix];
@@ -73,46 +70,25 @@
     }
 
     function authSuccess(d) {
-      // TODO: Make this better. Too lazy right now
-      var currentData = localStorage.getItem(key),
-        payload = currentData ? JSON.parse(currentData) : {};
-      payload[SparkMD5.hash(d.email)] = {
-        email: d.email,
-        fullName: d.displayName,
-        photoURL: d.profileImage
-      };
-      localStorage.setItem(key, JSON.stringify(payload));
+      var user = d.user ? d.user : d;
+      loginService.setLoginHistory({
+        email: user.email,
+        firstName: loginService.firstName,
+        lastName: loginService.lastName
+      });
 
       vm.loading = false;
       $state.go('root.home');
     }
 
     function authFail(error) {
-      vm.loading = false;
+      vm.loading = false;console.log(error);
       if(error.code === 'auth/user-not-found') {
         vm.emailInvalid = true;
         $state.go('login.email');
       } else if(error.code === 'auth/wrong-password') {
         vm.passwordInvalid = true;
         $state.go('login.password');
-      }
-    }
-
-    function chooseAccount() {
-      goToTab(vm.pages.signInOptions);
-    }
-
-    function loginWithOldUser(user) {
-      if (user) {
-        vm.email = user.email;
-        vm.profileImage = user.profileImage;
-        vm.pages.password.subHeader = user.fullName;
-        goToTab(vm.pages.password);
-      } else {
-        vm.email = '';
-        vm.password = '';
-        vm.profileImage = '';
-        goToTab(vm.pages.email);
       }
     }
   }

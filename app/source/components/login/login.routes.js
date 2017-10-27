@@ -26,7 +26,8 @@
           }
         },
         data: {
-          pageTitle: 'Sign In'
+          pageTitle: 'Sign In',
+          showLoginHistoryMenu: true
         }
       })
       .state('login.password', {
@@ -39,12 +40,13 @@
           }
         },
         data: {
-          pageTitle: 'Sign In'
+          pageTitle: 'Sign In',
+          showLoginHistoryMenu: true
         },
         resolve: {
-          userEmail: ['loginService', '$state', function(loginService, $state) {
+          redirect: ['loginService', function(loginService) {
             if(!loginService.email) {
-              $state.go('login.email');
+              return 'login.email';
             }
           }]
         }
@@ -60,7 +62,8 @@
         },
         data: {
           pageTitle: 'Sign Up',
-          subTitle: 'Join us. We have cookies.'
+          subTitle: 'Join us. We have cookies.',
+          showLoginHistoryMenu: true
         }
       })
       .state('login.signInOptions', {
@@ -68,12 +71,13 @@
         views: {
           'signInOptions': {
             templateUrl: 'source/components/login/sign-in-options/sign-in-options.component.html',
-            controller: 'sign-in-optionsComponent',
-            controllerAs: 'sign-in-optionsVm'
+            controller: 'signInOptionsComponent',
+            controllerAs: 'signInOptionsVm'
           }
         },
         data: {
-          pageTitle: 'Choose an Account'
+          pageTitle: 'Choose an Account',
+          hideProfileImage: true
         }
       });
   }

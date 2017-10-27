@@ -1,0 +1,30 @@
+
+.slide {
+  
+  &.ng-enter,
+  &.ng-leave {
+    transition: all 1s ease;
+  }
+  
+  &.ng-enter {
+    transform: translate(100%, 0);
+  }
+  
+  &.ng-enter-active {
+    transform: translate(0, 0);
+  }
+  
+  &.ng-leave {
+    transform: translate(0, 0);
+  }
+  
+  &.ng-leave-active {
+    transform: translate(-100%, 0);
+  }
+}
+
+
+
+
+
+

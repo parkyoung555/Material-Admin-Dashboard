@@ -13,6 +13,7 @@
 
     vm.currentStep = 0;
     vm.newEmail = loginService.email;
+    vm.newFirstNameFocus = true;
     vm.newEmailFocus = false;
     vm.newPasswordFocus = false;
 
@@ -47,6 +48,7 @@
           toast
             .textContent('Account created!')
             .action('OK');
+          $mdToast.show(toast);
           $state.go('login.email');
         })
         .catch(function(error){
@@ -61,6 +63,10 @@
 
     function error(err) {
       console.error(err);
+      toast
+        .textContent(err.message)
+        .action('OK');
+      $mdToast.show(toast);
     }
 
     function dataValid() {
