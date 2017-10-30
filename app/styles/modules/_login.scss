@@ -6,7 +6,7 @@
   .background-pattern {
     height: 100%;
     left: 0;
-    opacity: .38;
+    opacity: .24;
     position: fixed;
     top: 0;
     width: 100%;
@@ -23,16 +23,8 @@
     z-index: 1;
     
     .view-wrapper {
-      display: table;
-      overflow-x: hidden;
+      overflow: hidden;
       position: relative;
-      white-space: nowrap;
-      min-width: 100%;
-      
-      > * {
-        //display: table-cell;
-        min-width: 100%;
-      }
     }
 
     .login-fixed-header {

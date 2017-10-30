@@ -72,7 +72,7 @@
     }
 
     function mdColorsAttrValue(isEnabled, cssProperty, paletteName) {
-      return isEnabled ? '{' + cssProperty + ': \'' + paletteName + '\'}' : '{}';
+      return isEnabled ? '{' + cssProperty + ': \'' + paletteName + '\'}' : '';
     }
   }
   themeService.$inject = ['$mdColors', '$mdColorUtil', '$mdColorPalette', '$mdTheming', 'utilityService'];

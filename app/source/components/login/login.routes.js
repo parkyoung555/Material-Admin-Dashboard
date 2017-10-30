@@ -19,7 +19,7 @@
       .state('login.email', {
         url: '/login/email',
         views: {
-          'email': {
+          '': {
             templateUrl: 'source/components/login/email/email.component.html',
             controller: 'emailComponent',
             controllerAs: 'emailVm'
@@ -33,7 +33,7 @@
       .state('login.password', {
         url: '/login/password',
         views: {
-          'password': {
+          '': {
             templateUrl: 'source/components/login/password/password.component.html',
             controller: 'passwordComponent',
             controllerAs: 'passwordVm'
@@ -54,7 +54,7 @@
       .state('login.signUp', {
         url: '/sign-up',
         views: {
-          'signUp': {
+          '': {
             templateUrl: 'source/components/login/sign-up/sign-up.component.html',
             controller: 'signUpComponent',
             controllerAs: 'signUpVm'
@@ -69,7 +69,7 @@
       .state('login.signInOptions', {
         url: '/sign-in-options',
         views: {
-          'signInOptions': {
+          '': {
             templateUrl: 'source/components/login/sign-in-options/sign-in-options.component.html',
             controller: 'signInOptionsComponent',
             controllerAs: 'signInOptionsVm'

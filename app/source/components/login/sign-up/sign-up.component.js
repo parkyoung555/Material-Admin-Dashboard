@@ -4,7 +4,7 @@
   angular.module('loginComponent')
     .controller('signUpComponent', signUpComponent);
 
-  function signUpComponent($scope, themeService, authService, loginService, userService, $state, $mdToast) {
+  function signUpComponent($rootScope, $scope, themeService, authService, loginService, userService, $state, $mdToast) {
     var vm = this,
       toast = $mdToast.simple()
         .hideDelay(6000)
@@ -45,11 +45,14 @@
         title: vm.title
       })
         .then(function(){
+          loginService.email = vm.newEmail;
+          loginService.password = vm.newPassword;
           toast
             .textContent('Account created!')
             .action('OK');
           $mdToast.show(toast);
-          $state.go('login.email');
+          // $state.go('login.email');
+          $rootScope.$broadcast('login', true);
         })
         .catch(function(error){
           console.log(error);
@@ -98,5 +101,5 @@
       vm.currentStep++;
     }
   }
-  signUpComponent.$inject = ['$scope', 'themeService', 'authService', 'loginService', 'userService', '$state', '$mdToast'];
+  signUpComponent.$inject = ['$rootScope', '$scope', 'themeService', 'authService', 'loginService', 'userService', '$state', '$mdToast'];
 })();
