@@ -2,9 +2,9 @@
   'use strict';
 
   angular.module('coreComponent')
-    .service('authService', loginService);
+    .service('authService', authService);
 
-  function loginService($firebaseAuth, $state) {
+  function authService($firebaseAuth, $state) {
     this.auth = $firebaseAuth();
     this.signOut = signOut;
     this.waitForSignIn = waitForSignIn;
@@ -21,8 +21,8 @@
     }
 
     function signOut() {
-      this.auth.$signOut();
+      return this.auth.$signOut();
     }
   }
-  loginService.$inject = ['$firebaseAuth', '$state'];
+  authService.$inject = ['$firebaseAuth', '$state'];
 })();

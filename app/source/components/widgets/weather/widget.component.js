@@ -81,9 +81,9 @@
         case 29: // partly cloudy (night)
         case 30: // partly cloudy (day)
         case 44: // partly cloudy
-          return 'partly-cloudy';
+          return 'few-clouds';
       }
-    };
+    }
 
     $scope.$watchCollection(function(){
       return [themeService.currentTheme, themeService.themeSuffix];

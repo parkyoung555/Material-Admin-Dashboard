@@ -1,7 +1,9 @@
-<div ui-view="topNav"></div>
+<div class="slide-down-fade" ui-view="topNav"></div>
 <div class="main-content" layout="row" flex>
   <!-- Sidenav -->
-  <div ui-view="sideNav" md-scroll-y></div>
+  <div class="slide-left-fade" ui-view="sideNav" md-scroll-y></div>
   <!-- Main content window -->
-  <md-content ui-view="content" flex md-scroll-y></md-content>
+  <md-content class="view-content" flex md-scroll-y>
+    <div class="slide-up-fade" ui-view="content"></div>
+  </md-content>
 </div>

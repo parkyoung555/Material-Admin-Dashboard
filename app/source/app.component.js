@@ -4,7 +4,7 @@
   angular.module('dashboardApp')
     .controller('rootComponent', rootComponent);
 
-  function rootComponent($rootScope, $scope, themeService) {
+  function rootComponent($scope, themeService) {
     var vm = this;
 
     $scope.$watchCollection(function(){
@@ -14,5 +14,5 @@
       vm.darkMode = !!theme[1];
     });
   }
-  rootComponent.$inject = ['$rootScope', '$scope', 'themeService'];
+  rootComponent.$inject = ['$scope', 'themeService'];
 })();

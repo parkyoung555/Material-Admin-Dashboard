@@ -4,8 +4,11 @@
   angular.module('loginComponent')
     .controller('loginComponent', loginComponent);
 
-  function loginComponent(authService, themeService, $scope, $state, loginService) {
-    var vm = this;
+  function loginComponent(authService, themeService, $scope, $state, loginService, $mdToast) {
+    var vm = this,
+      toast = $mdToast.simple()
+        .hideDelay(6000)
+        .highlightAction(true);
 
     vm.loading = false;
     vm.loginHistoryExists = !!loginService.getLoginHistory();
@@ -78,11 +81,16 @@
       });
 
       vm.loading = false;
-      $state.go('root.home');
+      loginService.login();
+      toast
+        .highlightClass('md-accent')
+        .textContent('Hello ' + loginService.firstName + '.')
+        .action('Hi');
+      $mdToast.show(toast);
     }
 
     function authFail(error) {
-      vm.loading = false;console.log(error);
+      vm.loading = false;
       if(error.code === 'auth/user-not-found') {
         vm.emailInvalid = true;
         $state.go('login.email');
@@ -90,7 +98,13 @@
         vm.passwordInvalid = true;
         $state.go('login.password');
       }
+
+      toast
+        .highlightClass('md-warn')
+        .textContent(error.message)
+        .action('OK');
+      $mdToast.show(toast);
     }
   }
-  loginComponent.$inject = ['authService', 'themeService', '$scope', '$state', 'loginService'];
+  loginComponent.$inject = ['authService', 'themeService', '$scope', '$state', 'loginService', '$mdToast'];
 })();

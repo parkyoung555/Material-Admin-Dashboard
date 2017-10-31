@@ -5,43 +5,48 @@
     .animation('.slide', slide);
 
   function slide($animateCss) {
-    var transitionTimingFunction = 'cubic-bezier(.35,0,.25,1)',
+    var transitionTimingFunction = 'cubic-bezier(.35, 0, .25, 1)',
       transitionDuration = '.35';
 
     return {
       enter: function(element, doneFn) {
-        var animationSlide = $animateCss(element, {
+        var nextElem = element.next(),
+          animationSlide = {
             easing: transitionTimingFunction,
-            from: {
-              transform: 'translateX(100%)',
-              position: 'absolute',
-              left: 0,
-              top: 0
-            },
-            to: {
-              transform: 'translateX(0)'
-            },
             duration: transitionDuration,
             cleanupStyles: true
-          }),
-          animationHeight = $animateCss(element.parent(), {
-          addClass: 'entering',
-          easing: transitionTimingFunction,
-          from: {
-            height: element.next()[0].offsetHeight + 'px'
           },
-          to: {
+          animationHeight = {
+            addClass: 'entering',
+            easing: transitionTimingFunction,
+            duration: transitionDuration,
+            cleanupStyles: true
+          };
+
+        if(nextElem[0].offsetHeight) {
+          animationSlide.from = {
+            transform: 'translate3d(100%, 0, 0)',
+            position: 'absolute',
+            left: 0,
+            top: 0
+          };
+          animationSlide.to = {
+            transform: 'translate3d(0, 0, 0)'
+          };
+          animationHeight.from = {
+            height: nextElem[0].offsetHeight  + 'px'
+          };
+          animationHeight.to = {
             height: element[0].offsetHeight + 'px'
-          },
-          duration: transitionDuration,
-          cleanupStyles: true
-        });
-        animationHeight.start().done(function(){
+          }
+        }
+
+        $animateCss(element.parent(), animationHeight).start().done(function(){
           element.parent().css({
             height: ''
           });
         });
-        animationSlide.start().done(function(){
+        $animateCss(element, animationSlide).start().done(function(){
           element.css({
             position: '',
             top: ''
@@ -52,13 +57,13 @@
         return $animateCss(element, {
           easing: transitionTimingFunction,
           from: {
-            transform: 'translateX(0)',
+            transform: 'translate3d(0, 0, 0)',
             position: 'absolute',
             left: 0,
             top: 0
           },
           to: {
-            transform: 'translateX(-100%)'
+            transform: 'translate3d(-100%, 0, 0)'
           },
           duration: transitionDuration,
           cleanupStyles: true

@@ -4,7 +4,7 @@
   angular.module('mainNavComponent')
     .controller('sideNavComponent', sideNavComponent);
 
-  function sideNavComponent($rootScope, $scope, $mdMedia, navigationService, themeService, authService, $state, userService) {
+  function sideNavComponent($rootScope, $scope, $mdMedia, navigationService, themeService, authService, $state, userService, loginService) {
     var vm = this;
 
     vm.openUserMenu = openUserMenu;
@@ -33,8 +33,7 @@
     }
 
     function signOut() {
-      authService.signOut();
-      $state.go('login.email');
+      loginService.logout();
     }
 
     function getUserInfo() {
@@ -51,5 +50,5 @@
         });
     }
   }
-  sideNavComponent.$inject = ['$rootScope', '$scope', '$mdMedia', 'navigationService', 'themeService', 'authService', '$state', 'userService'];
+  sideNavComponent.$inject = ['$rootScope', '$scope', '$mdMedia', 'navigationService', 'themeService', 'authService', '$state', 'userService', 'loginService'];
 })();

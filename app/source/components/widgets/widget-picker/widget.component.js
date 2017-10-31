@@ -25,7 +25,7 @@
         parent: angular.element(document.body),
         targetEvent: ev,
         clickOutsideToClose:true,
-        fullscreen: false
+        fullscreen: true
       }).then(function(widget) {
         userService.addWidget(widget.selectedWidget);
         toast

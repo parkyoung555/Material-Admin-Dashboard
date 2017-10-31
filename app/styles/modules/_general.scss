@@ -6,6 +6,14 @@
   padding: 0.2em 0;
 }
 
+.view-content {
+  position: relative;
+  
+  > [ui-view] {
+    height: 100%;
+  }
+}
+
 //md-tabs.stepper {
 //
 //  md-tabs-wrapper {

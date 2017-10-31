@@ -34,9 +34,9 @@
   <div class="md-nav-links">
     <div class="nav-search" layout="row">
       <md-icon>search</md-icon>
-      <input class="md-body-1" ng-model="sideNavVm.navSearch" placeholder="Search" />
+      <input class="md-body-1" ng-model="sideNavVm.navSearch" placeholder="Search" flex/>
     </div>
-    <div ng-if="filteredNavItems.length == 0" class="md-body-1 no-nav-search">Nothing looks like {{sideNavVm.navSearch}}.</div>
+    <div ng-if="filteredNavItems.length == 0" class="md-body-1 no-nav-search">Nothing looks like "{{sideNavVm.navSearch}}".</div>
     <md-button ui-sref="{{menuItem.state}}"
                ng-repeat="menuItem in (filteredNavItems = (sideNavVm.menuItems | filter: sideNavVm.navSearch))"
                md-colors="{{sideNavVm.mdColorsAttrValue($state.current.name == menuItem.state, 'color', ( menuItem.activeColor || ( sideNavVm.currentTheme + '-accent' ) ))}}">
