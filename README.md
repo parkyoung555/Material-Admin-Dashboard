@@ -1,4 +1,4 @@
-# Material Dashboard
+# Material Admin Dashboard
 
 A customizable dashboard created with AngularJS and Material Design.
 
