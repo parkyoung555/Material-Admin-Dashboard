@@ -73,7 +73,8 @@
     }
 
     function authSuccess(d) {
-      var user = d.user ? d.user : d;
+      var user = d.user ? d.user : d,
+        greetingName = user.displayName ? user.displayName.split(/\s+/)[0] : loginService.firstName;
       loginService.setLoginHistory({
         email: user.email,
         firstName: loginService.firstName,
@@ -84,7 +85,7 @@
       loginService.login();
       toast
         .highlightClass('md-accent')
-        .textContent('Hello ' + loginService.firstName + '.')
+        .textContent('Hello ' + greetingName + '.')
         .action('Hi');
       $mdToast.show(toast);
     }
