@@ -213,8 +213,8 @@
         accent100Color = themeService.getColor(theme, vm.widgetTheme.bar[0][0], vm.widgetTheme.bar[0][1], 'value'),
         accent200Color = themeService.getColor(theme, vm.widgetTheme.bar[1][0], vm.widgetTheme.bar[1][1], 'value'),
         accent700Color = themeService.getColor(theme, vm.widgetTheme.bar[2][0], vm.widgetTheme.bar[2][1], 'value'),
-        lineColor = !vm.darkTheme ? [0,0,0,.12] : [255,255,255,.12],
-        fontColor = !vm.darkTheme ? [0,0,0,.24] : [255,255,255,.24];
+        lineColor = !vm.darkTheme ? [0,0,0,0.12] : [255,255,255,0.12],
+        fontColor = !vm.darkTheme ? [0,0,0,0.24] : [255,255,255,0.24];
 
       // // Spline colors
       // vm.chartConfig.plotOptions.spline.lineColor = themeService.getRGBString(splineColor);
@@ -231,26 +231,26 @@
       vm.chartConfig.plotOptions.area.lineColor = themeService.getRGBString(accent200Color);
       vm.chartConfig.plotOptions.area.marker.fillColor = themeService.getRGBString(accent200Color);
       vm.chartConfig.plotOptions.area.marker.lineColor = themeService.getRGBString(accent200Color);
-      vm.chartConfig.plotOptions.area.states.hover.halo.attributes.fill = themeService.getRGBString(accent200Color, .12);
+      vm.chartConfig.plotOptions.area.states.hover.halo.attributes.fill = themeService.getRGBString(accent200Color, 0.12);
 
       // Area color
       if(vm.darkTheme) {
-        vm.chartConfig.plotOptions.area.fillColor.stops[0][1] = themeService.getRGBString([255,255,255,.3]);
-        vm.chartConfig.plotOptions.area.fillColor.stops[1][1] = themeService.getRGBString(accent100Color, .2);
+        vm.chartConfig.plotOptions.area.fillColor.stops[0][1] = themeService.getRGBString([255,255,255,0.3]);
+        vm.chartConfig.plotOptions.area.fillColor.stops[1][1] = themeService.getRGBString(accent100Color, 0.2);
       } else {
-        vm.chartConfig.plotOptions.area.fillColor.stops[0][1] = themeService.getRGBString(accent200Color, .5);
-        vm.chartConfig.plotOptions.area.fillColor.stops[1][1] = themeService.getRGBString([255,255,255,.2]);
+        vm.chartConfig.plotOptions.area.fillColor.stops[0][1] = themeService.getRGBString(accent200Color, 0.5);
+        vm.chartConfig.plotOptions.area.fillColor.stops[1][1] = themeService.getRGBString([255,255,255,0.2]);
       }
 
       // Grid line colors
-      vm.chartConfig.xAxis.lineColor = themeService.getRGBString(lineColor, .06);
+      vm.chartConfig.xAxis.lineColor = themeService.getRGBString(lineColor, 0.06);
       vm.chartConfig.xAxis.gridLineColor = themeService.getRGBString(lineColor);
-      vm.chartConfig.xAxis.tickColor = themeService.getRGBString(lineColor, .06);
+      vm.chartConfig.xAxis.tickColor = themeService.getRGBString(lineColor, 0.06);
       vm.chartConfig.yAxis.lineColor = themeService.getRGBString(lineColor);
       vm.chartConfig.yAxis.gridLineColor = themeService.getRGBString(lineColor);
 
       // Crosshair Color
-      vm.chartConfig.xAxis.crosshair.color = themeService.getRGBString(lineColor,.08);
+      vm.chartConfig.xAxis.crosshair.color = themeService.getRGBString(lineColor, 0.08);
       vm.chartConfig.yAxis.crosshair.color = themeService.getRGBString(lineColor);
 
       // Text colors

@@ -4,7 +4,7 @@
   angular.module('coreComponent')
     .service('authService', authService);
 
-  function authService($firebaseAuth, $state) {
+  function authService($firebaseAuth) {
     this.auth = $firebaseAuth();
     this.signOut = signOut;
     this.waitForSignIn = waitForSignIn;
@@ -24,5 +24,5 @@
       return this.auth.$signOut();
     }
   }
-  authService.$inject = ['$firebaseAuth', '$state'];
+  authService.$inject = ['$firebaseAuth'];
 })();

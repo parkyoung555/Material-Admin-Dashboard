@@ -12,12 +12,10 @@
     "angular-sanitize": "^1.4.0",
     "angular-touch": "^1.4.0",
     "angular-material": "^1.1.5",
-    "roboto-fontface": "^0.8.0",
     "jquery": "^3.2.1",
     "highcharts": "^6.0.1",
     "highcharts-ng": "^1.1.0",
     "angular-ui-router": "^1.0.9",
-    "material-design-icons": "^3.0.1",
     "angular-loading-bar": "^0.9.0",
     "fluid-grid": "angular-fluid-grid#^0.5.0",
     "angularfire": "^2.3.0",
@@ -30,5 +28,24 @@
   "moduleName": "dashboardApp",
   "resolutions": {
     "gridstack": "^0.3.0"
+  },
+  "overrides": {
+    "material-design-icons": {
+      "main": [
+        "iconfont/material-icons.css"
+      ]
+    },
+    "fluid-grid": {
+      "main": [
+        "dist/fluid-grid.min.css",
+        "dist/fluid-grid.js"
+      ]
+    },
+    "highcharts-ng": {
+      "main": [
+        "dist/highcharts-ng.css",
+        "dist/highcharts-ng.js"
+      ]
+    }
   }
 }

@@ -28,7 +28,7 @@
       vm.profileImage = data.profileImage;
     });
 
-    $scope.$on('login', function(ev, data){
+    $scope.$on('login', function(){
       if(loginService.email && loginService.password) {
         signInWithEmailAndPassword(loginService.email, loginService.password);
       }
@@ -37,7 +37,7 @@
     $scope.$on('loginLoader', function(ev, data){
       vm.loading = data.loading;
       vm.loaderType = data.progress ? 'determinate' : 'indeterminate';
-      vm.loaderProgress = data.progress
+      vm.loaderProgress = data.progress;
     });
 
 

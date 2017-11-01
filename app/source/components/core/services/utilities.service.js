@@ -21,7 +21,7 @@
         .replace(/\b([A-Z]+)([A-Z])([a-z])/, '$1 $2$3')
         .replace(/^./, function (str) {
           return str.toUpperCase();
-        })
+        });
     }
 
     function camelToDash(str) {
@@ -30,7 +30,7 @@
 
     function getMonths(month) {
       var months = ['January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December']
+        'July', 'August', 'September', 'October', 'November', 'December'];
 
       return month ? months[month] : months;
     }

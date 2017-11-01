@@ -118,10 +118,10 @@
       var areaColor = themeService.getColor(theme, vm.widgetTheme.default.area.fill[0], vm.widgetTheme.default.area.fill[1], vm.widgetTheme.default.area.fill[2]),
         lineColor = themeService.getColor(theme, vm.widgetTheme.default.area.line[0], vm.widgetTheme.default.area.line[1], vm.widgetTheme.default.area.line[2]);
 
-      vm.chartConfig.plotOptions.area.fillColor = themeService.getRGBString(areaColor, .24);
+      vm.chartConfig.plotOptions.area.fillColor = themeService.getRGBString(areaColor, 0.24);
       vm.chartConfig.plotOptions.area.lineColor = themeService.getRGBString(lineColor);
       vm.chartConfig.plotOptions.area.marker.fillColor = themeService.getRGBString(lineColor);
-      vm.chartConfig.plotOptions.area.states.hover.halo.attributes.fill = themeService.getRGBString(lineColor, .12);
+      vm.chartConfig.plotOptions.area.states.hover.halo.attributes.fill = themeService.getRGBString(lineColor, 0.12);
     }
   }
   revenueWidgetComponent.$inject = ['$scope', 'themeService', 'utilityService'];

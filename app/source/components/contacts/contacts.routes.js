@@ -20,7 +20,7 @@
           menuIcon: 'person',
           pageColor: 'accent-A400'
         }
-      })
+      });
   }
   routeConfig.$inject = ['$stateProvider'];
 })();

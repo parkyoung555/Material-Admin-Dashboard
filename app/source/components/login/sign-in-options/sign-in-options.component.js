@@ -46,7 +46,7 @@
 
       if(data) {
         angular.forEach(data, function(value, key){
-          data[key].profileImage = userService.getGravatar(value.email)
+          data[key].profileImage = userService.getGravatar(value.email);
         });
       }
 

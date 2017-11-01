@@ -4,7 +4,7 @@
   angular.module('coreComponent')
     .service('userService', userService);
 
-  function userService(widgetsUtilityService, $firebaseArray, utilityService) {
+  function userService(widgetsUtilityService, $firebaseArray) {
     var db = $firebaseArray(firebase.database().ref('/users')),
       gravatarUrl = 'https://www.gravatar.com/avatar/';
 
@@ -123,5 +123,5 @@
       return gravatarUrl + SparkMD5.hash(email);
     }
   }
-  userService.$inject = ['widgetsUtilityService', '$firebaseArray', 'utilityService'];
+  userService.$inject = ['widgetsUtilityService', '$firebaseArray'];
 })();

@@ -20,7 +20,6 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       // bower:js
-      'bower_components/jquery/dist/jquery.js',
       'bower_components/angular/angular.js',
       'bower_components/angular-animate/angular-animate.js',
       'bower_components/angular-aria/angular-aria.js',
@@ -31,6 +30,7 @@ module.exports = function(config) {
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-touch/angular-touch.js',
       'bower_components/angular-material/angular-material.js',
+      'bower_components/jquery/dist/jquery.js',
       'bower_components/highcharts/highcharts.js',
       'bower_components/highcharts-ng/dist/highcharts-ng.js',
       'bower_components/angular-ui-router/release/angular-ui-router.js',

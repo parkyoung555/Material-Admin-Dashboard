@@ -9,7 +9,7 @@
       transitionDuration = '.35';
 
     return {
-      enter: function(element, doneFn) {
+      enter: function(element) {
         var nextElem = element.next(),
           animationSlide = {
             easing: transitionTimingFunction,
@@ -38,7 +38,7 @@
           };
           animationHeight.to = {
             height: element[0].offsetHeight + 'px'
-          }
+          };
         }
 
         $animateCss(element.parent(), animationHeight).start().done(function(){
@@ -53,7 +53,7 @@
           });
         });
       },
-      leave: function(element, doneFn) {
+      leave: function(element) {
         return $animateCss(element, {
           easing: transitionTimingFunction,
           from: {

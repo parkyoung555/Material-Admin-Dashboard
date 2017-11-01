@@ -12,7 +12,7 @@
     vm.reorgModeActive = false;
     vm.removeWidget = userService.removeWidget;
 
-    $scope.$on('isCompact', function(ev, data) {
+    $scope.$on('isCompact', function() {
       $timeout(function(){
         widgetsUtilityService.reflowHighcharts();
       }, 500);

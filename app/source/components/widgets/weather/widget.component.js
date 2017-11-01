@@ -24,6 +24,8 @@
     function getIconClass (weatherCode) {
       // Weather codes: https://developer.yahoo.com/weather/documentation.html#codes
       weatherCode = parseInt(weatherCode);
+
+      // Image asset paths must be hard coded since file revver will not be able to recognize dynamically built paths
       switch (weatherCode) {
         case 25: // cold
         case 32: // sunny
@@ -31,7 +33,7 @@
         case 34: // fair (day)
         case 36: // hot
         case 3200: // not available
-          return 'clear';
+          return '/images/md-weather-iconset/weather-clear.png';
         case 0: // tornado
         case 1: // tropical storm
         case 2: // hurricane
@@ -44,7 +46,7 @@
         case 17: // hail
         case 35: // mixed rain and hail
         case 40: // scattered showers
-          return 'rain';
+          return '/images/md-weather-iconset/weather-rain.png';
         case 3: // severe thunderstorms
         case 4: // thunderstorms
         case 37: // isolated thunderstorms
@@ -52,7 +54,7 @@
         case 39: // scattered thunderstorms (not a typo)
         case 45: // thundershowers
         case 47: // isolated thundershowers
-          return 'storm';
+          return '/images/md-weather-iconset/weather-storm.png';
         case 5: // mixed rain and snow
         case 7: // mixed snow and sleet
         case 13: // snow flurries
@@ -63,25 +65,25 @@
         case 42: // scattered snow showers
         case 43: // heavy snow
         case 46: // snow showers
-          return 'snow';
+          return '/images/md-weather-iconset/weather-snow.png';
         case 15: // blowing snow
         case 19: // dust
         case 20: // foggy
         case 21: // haze
         case 22: // smoky
-          return 'fog';
+          return '/images/md-weather-iconset/weather-fog.png';
         case 24: // windy
         case 23: // blustery
-          return 'wind';
+          return '/images/md-weather-iconset/weather-wind.png';
         case 26: // cloudy
         case 27: // mostly cloudy (night)
         case 28: // mostly cloudy (day)
         case 31: // clear (night)
-          return 'clouds';
+          return '/images/md-weather-iconset/weather-clouds.png';
         case 29: // partly cloudy (night)
         case 30: // partly cloudy (day)
         case 44: // partly cloudy
-          return 'few-clouds';
+          return '/images/md-weather-iconset/weather-few-clouds.png';
       }
     }
 
@@ -94,8 +96,7 @@
     ////////////////////////////////
 
     function getIconUrl(code) {
-      var file = getIconClass(code);
-      return '/images/md-weather-iconset/weather-'+file+'.png';
+      return getIconClass(code);
     }
 
     function getTimestamp(dateStr) {
