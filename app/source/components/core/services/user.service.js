@@ -6,7 +6,8 @@
 
   function userService(widgetsUtilityService, $firebaseArray) {
     var db = $firebaseArray(firebase.database().ref('/users')),
-      gravatarUrl = 'https://www.gravatar.com/avatar/';
+      gravatarUrl = 'https://www.gravatar.com/avatar/',
+      fallBackImage = 'https://api.adorable.io/avatars/64/';
 
     this.fluidGridOptions = {
       columns: 8, // the width of the grid, in columns
@@ -120,7 +121,7 @@
     }
 
     function getGravatar(email) {
-      return gravatarUrl + SparkMD5.hash(email);
+      return gravatarUrl + SparkMD5.hash(email) + '?d=' + encodeURIComponent(fallBackImage + email);
     }
   }
   userService.$inject = ['widgetsUtilityService', '$firebaseArray'];

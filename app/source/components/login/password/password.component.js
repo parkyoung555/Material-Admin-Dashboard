@@ -8,6 +8,7 @@
     var vm = this;
 
     vm.passwordFocus = true;
+    vm.password = 'password';
 
     vm.signIn = signIn;
 

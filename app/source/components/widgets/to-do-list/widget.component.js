@@ -4,7 +4,7 @@
   angular.module('toDoListComponent')
     .controller('toDoListComponent', toDoListComponent);
 
-  function toDoListComponent(toDoListService, $mdToast, $mdDialog) {
+  function toDoListComponent(toDoListService, $mdToast, $mdDialog, themeService, $scope) {
     var vm = this,
       toast = $mdToast.simple()
       .hideDelay(6000)
@@ -16,6 +16,12 @@
     vm.completeTask = completeTask;
     vm.removeTask = removeTask;
     vm.getActiveTasks = getActiveTasks;
+
+    $scope.$watchCollection(function(){
+      return [themeService.currentTheme, themeService.themeSuffix];
+    }, function(theme){
+      vm.currentTheme = theme[0] + theme[1];
+    });
 
     /////////////////////////////////
 
@@ -69,5 +75,5 @@
       });
     }
   }
-  toDoListComponent.$inject = ['toDoListService', '$mdToast', '$mdDialog'];
+  toDoListComponent.$inject = ['toDoListService', '$mdToast', '$mdDialog', 'themeService', '$scope'];
 })();

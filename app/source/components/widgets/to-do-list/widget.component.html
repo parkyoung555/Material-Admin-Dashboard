@@ -13,7 +13,7 @@
       <md-checkbox ng-model="task.isCompleted" aria-label="complete task" ng-click="$event.stopImmediatePropagation();toDoListVm.completeTask(task);"></md-checkbox>
       <div class="md-list-item-text" layout="column">
         <h3>{{ task.description }}</h3>
-        <h4 md-colors="{color: 'primary-hue-2'}">{{ task.date | date: 'mediumDate' }}</h4>
+        <h4 md-colors="{color: '{{toDoListVm.currentTheme}}-primary-hue-2'}">{{ task.date | date: 'mediumDate' }}</h4>
       </div>
       <md-icon class="md-secondary" ng-click="toDoListVm.removeTask(task)" aria-label="remove task">delete</md-icon>
     </md-list-item>

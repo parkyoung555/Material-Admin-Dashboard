@@ -11,7 +11,8 @@
         .highlightAction(true);
 
     vm.loading = false;
-    vm.loginHistoryExists = !!loginService.getLoginHistory();
+    // vm.loginHistoryExists = !!loginService.getLoginHistory();
+    vm.loginHistoryExists = true;
 
     vm.signInWithGoogle = signInWithGoogle;
     vm.signInWithFacebook = signInWithFacebook;
@@ -74,18 +75,19 @@
 
     function authSuccess(d) {
       var user = d.user ? d.user : d,
-        greetingName = user.displayName ? user.displayName.split(/\s+/)[0] : loginService.firstName;
+        fName = user.displayName ? user.displayName.split(/\s+/)[0] : loginService.firstName,
+        lName = user.displayName ? user.displayName.split(/\s+/)[1] : loginService.lastName;
       loginService.setLoginHistory({
         email: user.email,
-        firstName: loginService.firstName,
-        lastName: loginService.lastName
+        firstName: fName,
+        lastName: lName
       });
 
       vm.loading = false;
       loginService.login();
       toast
         .highlightClass('md-accent')
-        .textContent('Hello ' + greetingName + '.')
+        .textContent('Hello ' + fName + '.')
         .action('Hi');
       $mdToast.show(toast);
     }

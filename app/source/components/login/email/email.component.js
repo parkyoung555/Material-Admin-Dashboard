@@ -8,7 +8,8 @@
 
     var vm = this;
 
-    vm.email = loginService.email;
+    // vm.email = loginService.email;
+    vm.email = 'test@test.com';
     vm.emailFocus = true;
 
     vm.goToPassword = goToPassword;
