@@ -4,11 +4,12 @@
   angular.module('mainNavComponent')
     .controller('sideNavComponent', sideNavComponent);
 
-  function sideNavComponent($rootScope, $scope, $mdMedia, navigationService, themeService, authService, $state, userService, loginService) {
+  function sideNavComponent($rootScope, $scope, $mdMedia, navigationService, themeService, authService, $state, userService, loginService, $mdSidenav) {
     var vm = this;
 
     vm.openUserMenu = openUserMenu;
     vm.signOut = signOut;
+    vm.toggleCompactMenu = toggleCompactMenu;
 
     vm.isCompact = !$mdMedia('gt-md');
     vm.menuItems = navigationService.menuItems;
@@ -49,6 +50,17 @@
           console.log(error);
         });
     }
+
+    function toggleCompactMenu() {
+      if($mdMedia('gt-md')) {
+        vm.isCompact = !vm.isCompact;
+        $rootScope.$broadcast('isCompact', vm.isCompact);
+      }
+
+      $mdSidenav('side-nav-left').toggle().then(function() {
+        widgetsUtilityService.reflowHighcharts();
+      });
+    }
   }
-  sideNavComponent.$inject = ['$rootScope', '$scope', '$mdMedia', 'navigationService', 'themeService', 'authService', '$state', 'userService', 'loginService'];
+  sideNavComponent.$inject = ['$rootScope', '$scope', '$mdMedia', 'navigationService', 'themeService', 'authService', '$state', 'userService', 'loginService', '$mdSidenav'];
 })();
