@@ -31,11 +31,11 @@
     //////////////////////////////////
 
     function parseAttr(key, value, attributes) {
-      function convertToDashes(match) {
-        return match[0] + '-' + match[1].toLowerCase();
-      }
+      attributes.$set(key.replace(/([a-z][A-Z])/g, _convertToDashes), value !== undefined && value !== null ? value : '');
+    }
 
-      attributes.$set(key.replace(/([a-z][A-Z])/g, convertToDashes), value !== undefined && value !== null ? value : '');
+    function _convertToDashes(match) {
+      return match[0] + '-' + match[1].toLowerCase();
     }
   }
   widgetRenderer.$inject = ['$compile', '$parse'];
