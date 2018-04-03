@@ -27,7 +27,7 @@ md-sidenav.side-navigation {
     padding: 0 $layout-unit-md;
 
     md-icon {
-      margin-right: $layout-unit;
+      margin-right: $layout-unit_xl;
     }
 
     input {
@@ -44,27 +44,41 @@ md-sidenav.side-navigation {
   }
 
   .nav-header {
-    background-color: rgba(0,0,0,.12);
-    display: inline-block;
     cursor: pointer;
+    height: $toolbar-compact__height;
     outline: none;
+    padding: 0 $layout-unit_md;
     width: 100%;
 
     .profile-icon {
+      border: 1px solid $border-dark__color;
       border-radius: 50%;
-      height: 64px;
-      margin: $layout-unit_md $layout-unit_md 0;
-      width: 64px;
+      height: 24px;
+      margin: 0 $layout-unit_xl 0 0;
+      width: 24px;
     }
 
     .nav-toolbar {
       cursor: pointer;
       outline: none;
-      padding: $layout-unit_md;
+
+      .user-details {
+        line-height: normal;
+
+        > * {
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .md-caption {
+          line-height: 20px;
+          opacity: .6;
+        }
+      }
     }
 
-    md-icon {
-      margin: 0 0;
+    md-icon.dropdown-indicator {
+      margin: 0 0 0 $layout_unit_md;
     }
   }
 
@@ -82,7 +96,7 @@ md-sidenav.side-navigation {
       width: 100%;
 
       md-icon {
-        margin: 0 $layout-unit_md 0 0;
+        margin: 0 $layout-unit_xl 0 0;
       }
 
       .md-ripple-container {
@@ -120,12 +134,19 @@ md-sidenav.side-navigation {
         display: none;
       }
 
-      .nav-header .profile-icon {
-        display: block;
-        height: 40px;
-        margin: $layout_unit auto;
+      .nav-header {
         padding: 0 0;
-        width: 40px;
+
+        .profile-icon {
+          display: block;
+          margin: auto;
+          padding: 0 0;
+        }
+
+        md-icon.dropdown-indicator {
+          display: none;
+          margin: 0 0;
+        }
       }
     }
   }
@@ -143,8 +164,18 @@ md-sidenav.side-navigation {
     }
 
     .nav-header {
-      background-color: rgba(0, 0, 0, .12) !important;
       color: $light-primary__color !important;
+
+      .profile-icon {
+        border: 1px solid $border-light__color;
+      }
     }
+  }
+}
+
+@media(min-width: $screen_lg) {
+
+  .side-nav-container {
+      z-index: 10;
   }
 }

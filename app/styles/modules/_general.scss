@@ -8,9 +8,17 @@
 
 .view-content {
   position: relative;
-  
+  z-index: 0;
+
   > [ui-view] {
     height: 100%;
+  }
+}
+
+.page-wrapper {
+
+  .main-content {
+    margin-left: $side-menu__compact__width;
   }
 }
 
@@ -103,15 +111,15 @@
 //}
 
 md-tabs.dots {
-  
+
   md-tabs-wrapper {
-    
+
     md-tabs-canvas {
       height: 16px;
-      
+
       md-pagination-wrapper {
         height: 16px;
-        
+
         md-tab-item {
           border-radius: 50%;
           color: $light-primary__color;
@@ -125,14 +133,14 @@ md-tabs.dots {
           text-align: center;
           width: 8px;
           z-index: 1;
-          
+
           > div {
             width: 100%;
             height: 100%;
           }
-          
+
           &.md-disabled {
-            
+
             > div {
               background-color: $dark-disabled__color !important;
             }
@@ -169,10 +177,6 @@ highchart {
   .main-content {
     position: relative;
     z-index: 0;
-
-    > md-content {
-      margin: 0 0 0 $side-menu__compact__width;
-    }
   }
 }
 
@@ -200,10 +204,7 @@ md-switch {
   .page-wrapper {
 
     .main-content {
-
-      > md-content {
-        margin: 0 0;
-      }
+      margin-left: 0;
     }
   }
 }

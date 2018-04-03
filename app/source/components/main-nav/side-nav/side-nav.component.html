@@ -1,13 +1,13 @@
 <md-sidenav class="side-navigation" md-component-id="side-nav-left" md-is-locked-open="$mdMedia('gt-md')" ng-class="{'compact': sideNavVm.isCompact}">
   <md-menu md-position-mode="target-right target">
-    <div class="nav-header" ng-click="sideNavVm.openUserMenu($mdMenu, $event)">
+    <div class="nav-header" ng-click="sideNavVm.openUserMenu($mdMenu, $event)" layout="row" layout-align="start center">
       <img class="profile-icon" ng-src="{{sideNavVm.profileImage}}" />
-      <div class="nav-toolbar md-body-2" layout="row" md-menu-origin>
-        <div class="user-details" flex>
+      <div class="nav-toolbar md-body-2" layout="row" md-menu-origin flex>
+        <md-truncate class="user-details" flex>
           <div class="name">{{sideNavVm.fullName}}</div>
-          <div class="title md-body-1">{{sideNavVm.title}}</div>
+          <div class="title md-caption">{{sideNavVm.title}}</div>
         </div>
-        <md-icon>arrow_drop_down</md-icon>
+        <md-icon class="dropdown-indicator">arrow_drop_down</md-icon>
       </div>
     </div>
     <md-menu-content width="4">

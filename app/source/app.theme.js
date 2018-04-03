@@ -101,6 +101,34 @@
             }
           }
         }
+      },
+      {
+        name: 'GroovyGreen',
+        default: {
+          primaryPalette: {
+            color: 'green',
+            options: {
+              'default': '500',
+              'hue-1': '100',
+              'hue-2': '600',
+              'hue-3': '800'
+            }
+          },
+          accentPalette: {
+            color: 'pink',
+            options: {
+              'default': '500'
+            }
+          }
+        },
+        dark: {
+          accentPalette: {
+            color: 'pink',
+            options: {
+              'default': 'A100'
+            }
+          }
+        }
       }
     ];
 

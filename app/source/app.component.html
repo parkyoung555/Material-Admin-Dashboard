@@ -1,9 +1,12 @@
-<div class="slide-down-fade" ui-view="topNav"></div>
-<div class="main-content" layout="row" flex>
+
+<div layout="row" flex>
   <!-- Sidenav -->
-  <div class="slide-left-fade" ui-view="sideNav" md-scroll-y></div>
+  <div class="slide-left-fade side-nav-container" ui-view="sideNav" md-scroll-y></div>
   <!-- Main content window -->
-  <md-content class="view-content" flex md-scroll-y>
-    <div class="slide-up-fade" ui-view="content"></div>
-  </md-content>
+  <div class="main-content" layout="column" flex>
+    <div class="slide-down-fade" ui-view="topNav"></div>
+    <md-content class="view-content" flex md-scroll-y>
+      <div class="slide-up-fade" ui-view="content"></div>
+    </md-content>
+  </div>
 </div>
