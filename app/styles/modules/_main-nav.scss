@@ -1,6 +1,3 @@
-.side-nav-container {
-    z-index: 10;
-}
 
 md-toolbar.compact {
   min-height: $toolbar-compact__height;
@@ -176,12 +173,9 @@ md-sidenav.side-navigation {
   }
 }
 
-// @media(min-width: $screen_lg) {
-//
-//   md-sidenav.side-navigation {
-//
-//     .nav-header {
-//       height: 64px;
-//     }
-//   }
-// }
+@media(min-width: $screen_lg) {
+
+  .side-nav-container {
+      z-index: 10;
+  }
+}
